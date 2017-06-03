@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Bodrocode.Extensions.Logging.Console
 {
-    public class ConsoleLogger : ILogger
+    public class AdvancedConsoleLogger : ILogger
     {
         // Writing to console is not an atomic operation in the current implementation and since multiple logger
         // instances are created with a different name. Also since Console is global, using a static lock is fine.
@@ -27,14 +27,14 @@ namespace Bodrocode.Extensions.Logging.Console
         [ThreadStatic]
         private static StringBuilder _logBuilder;
 
-        static ConsoleLogger()
+        static AdvancedConsoleLogger()
         {
             var logLevelString = GetLogLevelString(LogLevel.Information);
             _messagePadding = new string(' ', logLevelString.Length + _loglevelPadding.Length);
             _newLineWithMessagePadding = Environment.NewLine + _messagePadding;
         }
 
-        public ConsoleLogger(string name, Func<string, LogLevel, bool> filter, bool includeScopes)
+        public AdvancedConsoleLogger(string name, Func<string, LogLevel, bool> filter, bool includeScopes)
         {
             if (name == null)
             {

@@ -10,7 +10,7 @@ namespace Bodrocode.Extensions.Logging.Console
 {
     public class ConsoleLoggerProvider : ILoggerProvider
     {
-        private readonly ConcurrentDictionary<string, ConsoleLogger> _loggers = new ConcurrentDictionary<string, ConsoleLogger>();
+        private readonly ConcurrentDictionary<string, AdvancedConsoleLogger> _loggers = new ConcurrentDictionary<string, AdvancedConsoleLogger>();
 
         private readonly Func<string, LogLevel, bool> _filter;
         private IConsoleLoggerSettings _settings;
@@ -68,9 +68,9 @@ namespace Bodrocode.Extensions.Logging.Console
             return _loggers.GetOrAdd(name, CreateLoggerImplementation);
         }
 
-        private ConsoleLogger CreateLoggerImplementation(string name)
+        private AdvancedConsoleLogger CreateLoggerImplementation(string name)
         {
-            return new ConsoleLogger(name, GetFilter(name, _settings), _settings.IncludeScopes);
+            return new AdvancedConsoleLogger(name, GetFilter(name, _settings), _settings.IncludeScopes);
         }
 
         private Func<string, LogLevel, bool> GetFilter(string name, IConsoleLoggerSettings settings)

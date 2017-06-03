@@ -22,14 +22,14 @@ namespace Bodrocode.Extensions.Logging.Test.Legacy
         private const string _state = "This is a test, and {curly braces} are just fine!";
         private Func<object, Exception, string> _defaultFormatter = (state, exception) => state.ToString();
 
-        private static Tuple<ConsoleLogger, ConsoleSink> SetUp(Func<string, LogLevel, bool> filter, bool includeScopes = false)
+        private static Tuple<AdvancedConsoleLogger, ConsoleSink> SetUp(Func<string, LogLevel, bool> filter, bool includeScopes = false)
         {
             // Arrange
             var sink = new ConsoleSink();
             var console = new TestConsole(sink);
-            var logger = new ConsoleLogger(_loggerName, filter, includeScopes);
+            var logger = new AdvancedConsoleLogger(_loggerName, filter, includeScopes);
             logger.Console = console;
-            return new Tuple<ConsoleLogger, ConsoleSink>(logger, sink);
+            return new Tuple<AdvancedConsoleLogger, ConsoleSink>(logger, sink);
         }
 
         public ConsoleLoggerTest()
@@ -695,7 +695,7 @@ namespace Bodrocode.Extensions.Logging.Test.Legacy
             };
 
             var loggerFactory = new LoggerFactory();
-            loggerFactory.AddConsole(settings);
+            loggerFactory.AddConsoleAdvanced(settings);
 
             var logger = loggerFactory.CreateLogger("Test");
             Assert.False(logger.IsEnabled(LogLevel.Trace));
@@ -726,7 +726,7 @@ namespace Bodrocode.Extensions.Logging.Test.Legacy
             };
 
             var loggerFactory = new LoggerFactory();
-            loggerFactory.AddConsole(settings);
+            loggerFactory.AddConsoleAdvanced(settings);
 
             var logger = loggerFactory.CreateLogger("Test");
             Assert.False(logger.IsEnabled(LogLevel.Trace));

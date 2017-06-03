@@ -12,9 +12,9 @@ namespace Bodrocode.Extensions.Logging.Console
         /// <summary>
         /// Adds a console logger that is enabled for <see cref="LogLevel"/>.Information or higher.
         /// </summary>
-        public static ILoggerFactory AddConsole(this ILoggerFactory factory)
+        public static ILoggerFactory AddConsoleAdvanced(this ILoggerFactory factory)
         {
-            return factory.AddConsole(includeScopes: false);
+            return factory.AddConsoleAdvanced(includeScopes: false);
         }
 
         /// <summary>
@@ -23,9 +23,9 @@ namespace Bodrocode.Extensions.Logging.Console
         /// <param name="factory"></param>
         /// <param name="includeScopes">A value which indicates whether log scope information should be displayed
         /// in the output.</param>
-        public static ILoggerFactory AddConsole(this ILoggerFactory factory, bool includeScopes)
+        public static ILoggerFactory AddConsoleAdvanced(this ILoggerFactory factory, bool includeScopes)
         {
-            factory.AddConsole((n, l) => l >= LogLevel.Information, includeScopes);
+            factory.AddConsoleAdvanced((n, l) => l >= LogLevel.Information, includeScopes);
             return factory;
         }
 
@@ -34,9 +34,9 @@ namespace Bodrocode.Extensions.Logging.Console
         /// </summary>
         /// <param name="factory">The <see cref="ILoggerFactory"/> to use.</param>
         /// <param name="minLevel">The minimum <see cref="LogLevel"/> to be logged</param>
-        public static ILoggerFactory AddConsole(this ILoggerFactory factory, LogLevel minLevel)
+        public static ILoggerFactory AddConsoleAdvanced(this ILoggerFactory factory, LogLevel minLevel)
         {
-            factory.AddConsole(minLevel, includeScopes: false);
+            factory.AddConsoleAdvanced(minLevel, includeScopes: false);
             return factory;
         }
 
@@ -47,12 +47,12 @@ namespace Bodrocode.Extensions.Logging.Console
         /// <param name="minLevel">The minimum <see cref="LogLevel"/> to be logged</param>
         /// <param name="includeScopes">A value which indicates whether log scope information should be displayed
         /// in the output.</param>
-        public static ILoggerFactory AddConsole(
+        public static ILoggerFactory AddConsoleAdvanced(
             this ILoggerFactory factory,
             LogLevel minLevel,
             bool includeScopes)
         {
-            factory.AddConsole((category, logLevel) => logLevel >= minLevel, includeScopes);
+            factory.AddConsoleAdvanced((category, logLevel) => logLevel >= minLevel, includeScopes);
             return factory;
         }
 
@@ -61,11 +61,11 @@ namespace Bodrocode.Extensions.Logging.Console
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="filter"></param>
-        public static ILoggerFactory AddConsole(
+        public static ILoggerFactory AddConsoleAdvanced(
             this ILoggerFactory factory,
             Func<string, LogLevel, bool> filter)
         {
-            factory.AddConsole(filter, includeScopes: false);
+            factory.AddConsoleAdvanced(filter, includeScopes: false);
             return factory;
         }
 
@@ -76,7 +76,7 @@ namespace Bodrocode.Extensions.Logging.Console
         /// <param name="filter"></param>
         /// <param name="includeScopes">A value which indicates whether log scope information should be displayed
         /// in the output.</param>
-        public static ILoggerFactory AddConsole(
+        public static ILoggerFactory AddConsoleAdvanced(
             this ILoggerFactory factory,
             Func<string, LogLevel, bool> filter,
             bool includeScopes)
@@ -85,7 +85,7 @@ namespace Bodrocode.Extensions.Logging.Console
             return factory;
         }
 
-        public static ILoggerFactory AddConsole(
+        public static ILoggerFactory AddConsoleAdvanced(
             this ILoggerFactory factory,
             IConsoleLoggerSettings settings)
         {
@@ -93,10 +93,10 @@ namespace Bodrocode.Extensions.Logging.Console
             return factory;
         }
 
-        public static ILoggerFactory AddConsole(this ILoggerFactory factory, IConfiguration configuration)
+        public static ILoggerFactory AddConsoleAdvanced(this ILoggerFactory factory, IConfiguration configuration)
         {
             var settings = new ConfigurationConsoleLoggerSettings(configuration);
-            return factory.AddConsole(settings);
+            return factory.AddConsoleAdvanced(settings);
         }
     }
 }
