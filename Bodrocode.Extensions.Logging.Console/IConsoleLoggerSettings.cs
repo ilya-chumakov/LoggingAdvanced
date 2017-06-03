@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Primitives;
 
-namespace Happysoft.Extensions.Logging.Console
+namespace Bodrocode.Extensions.Logging.Console
 {
     public interface IConsoleLoggerSettings
     {

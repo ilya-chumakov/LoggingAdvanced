@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Xunit;
 using Xunit.Sdk;
 
-namespace Happysoft.Extensions.Logging.Test
+namespace Bodrocode.Extensions.Logging.Test.Legacy
 {
     public class LoggerMessageTest
     {

@@ -4,7 +4,7 @@
 using System;
 using System.Text;
 
-namespace Happysoft.Extensions.Logging.Console.Internal
+namespace Bodrocode.Extensions.Logging.Console.Internal
 {
     /// <summary>
     /// For non-Windows platform consoles which understand the ANSI escape code sequences to represent color

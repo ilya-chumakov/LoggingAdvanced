@@ -3,9 +3,9 @@
 
 using System;
 using System.Collections.Generic;
-using Happysoft.Extensions.Logging.Test.Utils;
+using Bodrocode.Extensions.Logging.Test.Legacy.Utils;
 
-namespace Happysoft.Extensions.Logging.Test
+namespace Bodrocode.Extensions.Logging.Test.Legacy
 {
     public class TestSink
     {

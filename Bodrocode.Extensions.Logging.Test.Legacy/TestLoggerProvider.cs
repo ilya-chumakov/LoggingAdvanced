@@ -4,7 +4,7 @@
 using System;
 using Microsoft.Extensions.Logging;
 
-namespace Happysoft.Extensions.Logging.Test
+namespace Bodrocode.Extensions.Logging.Test.Legacy
 {
     public class TestLoggerProvider : ILoggerProvider
     {

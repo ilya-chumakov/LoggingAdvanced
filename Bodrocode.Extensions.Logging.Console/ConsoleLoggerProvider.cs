@@ -6,7 +6,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
-namespace Happysoft.Extensions.Logging.Console
+namespace Bodrocode.Extensions.Logging.Console
 {
     public class ConsoleLoggerProvider : ILoggerProvider
     {

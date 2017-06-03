@@ -4,7 +4,7 @@
 using System;
 using Microsoft.Extensions.Logging;
 
-namespace Happysoft.Extensions.Logging.Test.Utils
+namespace Bodrocode.Extensions.Logging.Test.Legacy.Utils
 {
     public class WriteContext
     {

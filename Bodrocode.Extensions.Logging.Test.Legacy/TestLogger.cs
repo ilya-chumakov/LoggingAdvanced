@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using Happysoft.Extensions.Logging.Test.Utils;
+using Bodrocode.Extensions.Logging.Test.Legacy.Utils;
 using Microsoft.Extensions.Logging;
 
-namespace Happysoft.Extensions.Logging.Test
+namespace Bodrocode.Extensions.Logging.Test.Legacy
 {
     public class TestLogger : ILogger
     {

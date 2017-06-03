@@ -5,7 +5,7 @@ using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Happysoft.Extensions.Logging.Console
+namespace Bodrocode.Extensions.Logging.Console
 {
     public static class ConsoleLoggerExtensions
     {

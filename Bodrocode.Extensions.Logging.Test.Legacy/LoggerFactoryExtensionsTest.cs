@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
-namespace Happysoft.Extensions.Logging.Test
+namespace Bodrocode.Extensions.Logging.Test.Legacy
 {
     public class LoggerFactoryExtensionsTest
     {

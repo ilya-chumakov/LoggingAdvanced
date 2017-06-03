@@ -6,7 +6,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging.Internal;
 using Xunit;
 
-namespace Happysoft.Extensions.Logging.Test
+namespace Bodrocode.Extensions.Logging.Test.Legacy
 {
     public class FormattedLogValuesTest
     {

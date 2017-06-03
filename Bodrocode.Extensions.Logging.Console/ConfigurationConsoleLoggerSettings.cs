@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
-namespace Happysoft.Extensions.Logging.Console
+namespace Bodrocode.Extensions.Logging.Console
 {
     public class ConfigurationConsoleLoggerSettings : IConsoleLoggerSettings
     {

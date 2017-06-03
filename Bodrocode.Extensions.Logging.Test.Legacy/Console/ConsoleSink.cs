@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace Happysoft.Extensions.Logging.Test.Console
+namespace Bodrocode.Extensions.Logging.Test.Legacy.Console
 {
     public class ConsoleSink
     {

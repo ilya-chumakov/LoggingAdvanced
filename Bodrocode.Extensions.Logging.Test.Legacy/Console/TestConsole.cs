@@ -2,9 +2,9 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using Happysoft.Extensions.Logging.Console.Internal;
+using Bodrocode.Extensions.Logging.Console.Internal;
 
-namespace Happysoft.Extensions.Logging.Test.Console
+namespace Bodrocode.Extensions.Logging.Test.Legacy.Console
 {
     public class TestConsole : IConsole
     {

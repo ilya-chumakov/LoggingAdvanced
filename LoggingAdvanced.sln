@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bodrocode.Extensions.Logging.Console", "Bodrocode.Extensions.Logging.Console\Bodrocode.Extensions.Logging.Console.csproj", "{CB5566E6-C151-4FC7-95C1-8A2EE4AD6FAA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bodrocode.Extensions.Logging.Test", "Bodrocode.Extensions.Logging.Test\Bodrocode.Extensions.Logging.Test.csproj", "{FD3C7798-2FB7-47E3-B8FC-45B06BF61391}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bodrocode.Extensions.Logging.Test.Legacy", "Bodrocode.Extensions.Logging.Test.Legacy\Bodrocode.Extensions.Logging.Test.Legacy.csproj", "{EF116BBA-3507-4EAB-A0FE-FC78A49CA853}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,10 @@ Global
 		{CB5566E6-C151-4FC7-95C1-8A2EE4AD6FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB5566E6-C151-4FC7-95C1-8A2EE4AD6FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB5566E6-C151-4FC7-95C1-8A2EE4AD6FAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD3C7798-2FB7-47E3-B8FC-45B06BF61391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD3C7798-2FB7-47E3-B8FC-45B06BF61391}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD3C7798-2FB7-47E3-B8FC-45B06BF61391}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD3C7798-2FB7-47E3-B8FC-45B06BF61391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF116BBA-3507-4EAB-A0FE-FC78A49CA853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF116BBA-3507-4EAB-A0FE-FC78A49CA853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF116BBA-3507-4EAB-A0FE-FC78A49CA853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF116BBA-3507-4EAB-A0FE-FC78A49CA853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,10 +4,10 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using Happysoft.Extensions.Logging.Console.Internal;
+using Bodrocode.Extensions.Logging.Console.Internal;
 using Microsoft.Extensions.Logging;
 
-namespace Happysoft.Extensions.Logging.Console
+namespace Bodrocode.Extensions.Logging.Console
 {
     public class ConsoleLogger : ILogger
     {

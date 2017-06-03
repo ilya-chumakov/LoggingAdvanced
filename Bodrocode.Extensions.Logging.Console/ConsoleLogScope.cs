@@ -3,6 +3,7 @@
 
 using System;
 using System.Threading;
+
 #if NET451
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Messaging;
@@ -10,7 +11,7 @@ using System.Runtime.Remoting.Messaging;
 
 #endif
 
-namespace Happysoft.Extensions.Logging.Console
+namespace Bodrocode.Extensions.Logging.Console
 {
     public class ConsoleLogScope
     {

@@ -4,7 +4,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace Happysoft.Extensions.Logging.Test
+namespace Bodrocode.Extensions.Logging.Test.Legacy
 {
     public class LoggingServiceCollectionExtensionsTest
     {

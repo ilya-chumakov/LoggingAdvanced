@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Happysoft.Extensions.Logging.Console.Internal
+namespace Bodrocode.Extensions.Logging.Console.Internal
 {
     public class WindowsLogConsole : IConsole
     {

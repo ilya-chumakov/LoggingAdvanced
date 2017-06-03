@@ -5,14 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Happysoft.Extensions.Logging.Console;
-using Happysoft.Extensions.Logging.Test.Console;
+using Bodrocode.Extensions.Logging.Console;
+using Bodrocode.Extensions.Logging.Test.Legacy.Console;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Moq;
 using Xunit;
 
-namespace Happysoft.Extensions.Logging.Test
+namespace Bodrocode.Extensions.Logging.Test.Legacy
 {
     public class ConsoleLoggerTest
     {
