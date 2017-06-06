@@ -15,7 +15,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         private readonly Func<string, LogLevel, bool> _filter;
         private IConsoleLoggerSettings _settings;
 
-        public ConsoleLoggerProvider(Func<string, LogLevel, bool> filter, bool includeScopes)
+        public ConsoleLoggerProvider(Func<string, LogLevel, bool> filter, ConsoleLoggerSettings settings)
         {
             if (filter == null)
             {
@@ -23,10 +23,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             }
 
             _filter = filter;
-            _settings = new ConsoleLoggerSettings()
-            {
-                IncludeScopes = includeScopes,
-            };
+            _settings = settings;
         }
 
         public ConsoleLoggerProvider(IConsoleLoggerSettings settings)

@@ -81,7 +81,13 @@ namespace Bodrocode.LoggingAdvanced.Console
             Func<string, LogLevel, bool> filter,
             bool includeScopes)
         {
-            factory.AddProvider(new ConsoleLoggerProvider(filter, includeScopes));
+            var settings = new ConsoleLoggerSettings()
+            {
+                IncludeScopes = includeScopes,
+            };
+
+            factory.AddProvider(new ConsoleLoggerProvider(filter, settings));
+
             return factory;
         }
 
