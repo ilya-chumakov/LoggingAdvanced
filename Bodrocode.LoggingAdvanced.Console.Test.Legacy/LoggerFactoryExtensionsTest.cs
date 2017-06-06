@@ -136,7 +136,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             // Arrange
             var factory = new Mock<ILoggerFactory>();
             factory.Setup(f => f.CreateLogger(It.Is<string>(
-                x => x.Equals("Happysoft.Extensions.Logging.Test.GenericClass"))))
+                x => x.Equals("Bodrocode.LoggingAdvanced.Console.Test.Legacy.GenericClass"))))
             .Returns(new Mock<ILogger>().Object);
 
             var logger = factory.Object.CreateLogger(typeof(GenericClass<TestType>));
@@ -151,7 +151,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             // Arrange
             var factory = new Mock<ILoggerFactory>();
             factory.Setup(f => f.CreateLogger(It.Is<string>(
-                x => x.Equals("Happysoft.Extensions.Logging.Test.GenericClass"))))
+                x => x.Equals("Bodrocode.LoggingAdvanced.Console.Test.Legacy.GenericClass"))))
             .Returns(new Mock<ILogger>().Object);
 
             var logger = factory.Object.CreateLogger(typeof(GenericClass<TestType, SecondTestType>));
