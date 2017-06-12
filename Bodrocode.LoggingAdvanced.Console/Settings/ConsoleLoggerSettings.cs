@@ -9,9 +9,19 @@ namespace Bodrocode.LoggingAdvanced.Console
 {
     public class ConsoleLoggerSettings : IConsoleLoggerSettings
     {
-        public IChangeToken ChangeToken { get; set; }
+        static ConsoleLoggerSettings()
+        {
+            Default = new ConsoleLoggerSettings()
+            {
+                IncludeScopes = false,
+            };
+        }
 
+        public static ConsoleLoggerSettings Default { get; }
+        
         public bool IncludeScopes { get; set; }
+
+        public IChangeToken ChangeToken { get; set; }
 
         public IDictionary<string, LogLevel> Switches { get; set; } = new Dictionary<string, LogLevel>();
 

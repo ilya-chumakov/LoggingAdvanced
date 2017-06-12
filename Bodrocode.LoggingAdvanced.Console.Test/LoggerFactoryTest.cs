@@ -6,8 +6,9 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
 {
     public class LoggerFactoryTest
     {
-        [Fact]
-        public void CreateLogger_WhenCalled_LoggerIsNotNull()
+        private readonly ILoggerFactory _factory;
+
+        public LoggerFactoryTest()
         {
             var services = new ServiceCollection();
 
@@ -15,11 +16,25 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
 
             var provider = services.BuildServiceProvider();
 
-            var factory = provider.GetService<ILoggerFactory>();
+            _factory = provider.GetService<ILoggerFactory>();
+        }
 
-            factory.AddConsoleAdvanced();
+        [Fact]
+        public void CreateLogger_Default_LoggerIsNotNull()
+        {
+            _factory.AddConsoleAdvanced();
 
-            var logger = factory.CreateLogger<LoggerFactoryTest>();
+            var logger = _factory.CreateLogger<LoggerFactoryTest>();
+
+            Assert.NotNull(logger);
+        }
+
+        [Fact]
+        public void CreateLogger_WithParams_LoggerIsNotNull()
+        {
+            _factory.AddConsoleAdvanced(new ConsoleLoggerSettings());
+
+            var logger = _factory.CreateLogger<LoggerFactoryTest>();
 
             Assert.NotNull(logger);
         }

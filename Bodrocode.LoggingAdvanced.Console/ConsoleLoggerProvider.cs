@@ -15,7 +15,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         private readonly Func<string, LogLevel, bool> _filter;
         private IConsoleLoggerSettings _settings;
 
-        public ConsoleLoggerProvider(Func<string, LogLevel, bool> filter, ConsoleLoggerSettings settings)
+        public ConsoleLoggerProvider(Func<string, LogLevel, bool> filter, IConsoleLoggerSettings settings)
         {
             if (filter == null)
             {
