@@ -15,5 +15,9 @@ namespace Bodrocode.LoggingAdvanced.Console
     public interface IReadonlyLoggerSettings
     {
         bool IncludeScopes { get; }
+        /// <summary>
+        /// Line break after log name and EventId: FooClass[42] \n foo message
+        /// </summary>
+        bool IncludeLineBreak { get; }
     }
 }

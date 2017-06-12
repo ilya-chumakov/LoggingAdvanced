@@ -868,6 +868,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             public IDictionary<string, LogLevel> Switches { get; } = new Dictionary<string, LogLevel>();
 
             public bool IncludeScopes { get; set; }
+            public bool IncludeLineBreak { get; }
 
             public IConsoleLoggerSettings Reload()
             {

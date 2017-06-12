@@ -42,6 +42,8 @@ namespace Bodrocode.LoggingAdvanced.Console
             }
         }
 
+        public bool IncludeLineBreak { get; }
+
         public IConsoleLoggerSettings Reload()
         {
             ChangeToken = null;

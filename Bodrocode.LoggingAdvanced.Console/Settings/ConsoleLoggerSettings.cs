@@ -14,7 +14,8 @@ namespace Bodrocode.LoggingAdvanced.Console
         /// </summary>
         public static ConsoleLoggerSettings Default => new ConsoleLoggerSettings
         {
-            IncludeScopes = false
+            IncludeScopes = false,
+            IncludeLineBreak = true
         };
 
         /// <summary>
@@ -22,8 +23,12 @@ namespace Bodrocode.LoggingAdvanced.Console
         /// </summary>
         public static ConsoleLoggerSettings Optimized => new ConsoleLoggerSettings
         {
-            IncludeScopes = false
+            IncludeScopes = false,
+            IncludeLineBreak = false
         };
+
+        /// <inheritdoc cref="IReadonlyLoggerSettings"/>
+        public bool IncludeLineBreak { get; set; }
 
         public bool IncludeScopes { get; set; }
 

@@ -130,7 +130,9 @@ namespace Bodrocode.LoggingAdvanced.Console
                 logBuilder.Append(logName);
                 logBuilder.Append("[");
                 logBuilder.Append(eventId);
-                logBuilder.AppendLine("]");
+                logBuilder.Append("]");
+
+                if (Settings.IncludeLineBreak) logBuilder.AppendLine();
 
                 // scope information
                 if (Settings.IncludeScopes)
