@@ -14,7 +14,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         /// </summary>
         public static ILoggerFactory AddConsoleAdvanced(this ILoggerFactory factory)
         {
-            return factory.AddConsoleAdvanced(ConsoleLoggerSettings.Default);
+            return factory.AddConsoleAdvanced(ConsoleLoggerSettings.Optimized);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             this ILoggerFactory factory, 
             LogLevel minLevel)
         {
-            factory.AddConsoleAdvanced(minLevel, ConsoleLoggerSettings.Default);
+            factory.AddConsoleAdvanced(minLevel, ConsoleLoggerSettings.Optimized);
             return factory;
         }
 
@@ -67,7 +67,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             this ILoggerFactory factory,
             Func<string, LogLevel, bool> filter)
         {
-            factory.AddConsoleAdvanced(filter, ConsoleLoggerSettings.Default);
+            factory.AddConsoleAdvanced(filter, ConsoleLoggerSettings.Optimized);
             return factory;
         }
 

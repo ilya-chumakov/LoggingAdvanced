@@ -9,7 +9,18 @@ namespace Bodrocode.LoggingAdvanced.Console
 {
     public class ConsoleLoggerSettings : IConsoleLoggerSettings
     {
+        /// <summary>
+        /// Microsoft default implementation with poor message format.
+        /// </summary>
         public static ConsoleLoggerSettings Default => new ConsoleLoggerSettings
+        {
+            IncludeScopes = false
+        };
+
+        /// <summary>
+        /// Improved formatting settings.
+        /// </summary>
+        public static ConsoleLoggerSettings Optimized => new ConsoleLoggerSettings
         {
             IncludeScopes = false
         };
