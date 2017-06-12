@@ -20,6 +20,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
         public bool IncludeLineBreak { get; }
         public bool IncludeTimestamp { get; }
         public bool IncludeZeroEventId { get; }
+        public bool IncludeLogNamespace { get; }
 
         public IConsoleLoggerSettings Reload()
         {

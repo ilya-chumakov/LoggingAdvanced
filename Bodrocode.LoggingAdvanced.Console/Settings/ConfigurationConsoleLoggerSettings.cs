@@ -42,9 +42,11 @@ namespace Bodrocode.LoggingAdvanced.Console
             }
         }
 
+        //todo read from cfg
         public bool IncludeLineBreak { get; }
         public bool IncludeTimestamp { get; }
         public bool IncludeZeroEventId { get; }
+        public bool IncludeLogNamespace { get; }
 
         public IConsoleLoggerSettings Reload()
         {

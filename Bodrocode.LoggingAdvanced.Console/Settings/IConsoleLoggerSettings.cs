@@ -33,5 +33,12 @@ namespace Bodrocode.LoggingAdvanced.Console
         ///     FooClass[0] -> FooClass
         /// </summary>
         bool IncludeZeroEventId { get; }
+
+
+        /// <summary>
+        /// Should log source namespace be included or not. For example:
+        ///     Root.Sub.FooClass -> FooClass
+        /// </summary>
+        bool IncludeLogNamespace { get; }
     }
 }

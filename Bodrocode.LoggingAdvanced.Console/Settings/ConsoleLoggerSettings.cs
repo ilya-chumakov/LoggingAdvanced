@@ -17,7 +17,8 @@ namespace Bodrocode.LoggingAdvanced.Console
             IncludeScopes = false,
             IncludeLineBreak = true,
             IncludeTimestamp = false,
-            IncludeZeroEventId = true
+            IncludeZeroEventId = true,
+            IncludeLogNamespace = true
         };
 
         /// <summary>
@@ -28,7 +29,8 @@ namespace Bodrocode.LoggingAdvanced.Console
             IncludeScopes = false,
             IncludeLineBreak = false,
             IncludeTimestamp = true,
-            IncludeZeroEventId = false
+            IncludeZeroEventId = false,
+            IncludeLogNamespace = false
         };
 
         public IDictionary<string, LogLevel> Switches { get; set; } = new Dictionary<string, LogLevel>();
@@ -39,6 +41,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         public bool IncludeScopes { get; set; }
         public bool IncludeTimestamp { get; set; }
         public bool IncludeZeroEventId { get; set; }
+        public bool IncludeLogNamespace { get; set; }
 
         public IConsoleLoggerSettings Reload()
         {

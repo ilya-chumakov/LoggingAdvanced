@@ -49,7 +49,7 @@ namespace Bodrocode.LoggingAdvanced.Console
 
             foreach (var logger in _loggers.Values)
             {
-                logger.Filter = GetFilter(logger.Name, _settings);
+                logger.Filter = GetFilter(logger.FullName, _settings);
                 logger.Settings = _settings;
             }
 

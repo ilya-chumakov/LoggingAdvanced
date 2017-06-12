@@ -39,22 +39,22 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             _paddingString = new string(' ', loglevelStringWithPadding.Length);
         }
 
-        private Tuple<ILoggerFactory, ConsoleSink> SetUpFactory(Func<string, LogLevel, bool> filter)
-        {
-            var t = SetUp(null);
-            var logger = t.Item1;
-            var sink = t.Item2;
+        //private Tuple<ILoggerFactory, ConsoleSink> SetUpFactory(Func<string, LogLevel, bool> filter)
+        //{
+        //    var t = SetUp(null);
+        //    var logger = t.Item1;
+        //    var sink = t.Item2;
 
-            var provider = new Mock<ILoggerProvider>();
-            provider.Setup(f => f.CreateLogger(
-                It.IsAny<string>()))
-                .Returns(logger);
+        //    var provider = new Mock<ILoggerProvider>();
+        //    provider.Setup(f => f.CreateLogger(
+        //        It.IsAny<string>()))
+        //        .Returns(logger);
 
-            var factory = new LoggerFactory();
-            factory.AddProvider(provider.Object);
+        //    var factory = new LoggerFactory();
+        //    factory.AddProvider(provider.Object);
 
-            return new Tuple<ILoggerFactory, ConsoleSink>(factory, sink);
-        }
+        //    return new Tuple<ILoggerFactory, ConsoleSink>(factory, sink);
+        //}
 
         [Fact]
         public void LogsWhenMessageIsNotProvided()
@@ -870,6 +870,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             public bool IncludeLineBreak { get; }
             public bool IncludeTimestamp { get; }
             public bool IncludeZeroEventId { get; }
+            public bool IncludeLogNamespace { get; }
 
             public IConsoleLoggerSettings Reload()
             {

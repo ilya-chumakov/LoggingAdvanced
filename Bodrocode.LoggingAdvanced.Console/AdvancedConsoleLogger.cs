@@ -41,7 +41,10 @@ namespace Bodrocode.LoggingAdvanced.Console
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
 
-            Name = name;
+            FullName = name;
+            //class name without namespace
+            ShortName = StripNamespace(name);
+
             Filter = filter ?? ((category, logLevel) => true);
             Settings = settings;
 
@@ -51,6 +54,13 @@ namespace Bodrocode.LoggingAdvanced.Console
                 Console = new AnsiLogConsole(new AnsiSystemConsole());
 
             TimestampProvider = new TimestampProvider();
+        }
+
+        private string StripNamespace(string name)
+        {
+            int lastIndexOf = name.LastIndexOf(".", StringComparison.Ordinal);
+
+            return lastIndexOf > 0 ? name.Substring(lastIndexOf + 1) : name;
         }
 
         public IConsole Console
@@ -71,7 +81,8 @@ namespace Bodrocode.LoggingAdvanced.Console
             set => _timestampProvider = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public string Name { get; }
+        public string FullName { get; }
+        public string ShortName { get; }
 
         public IReadonlyLoggerSettings Settings { get; set; }
 
@@ -87,12 +98,16 @@ namespace Bodrocode.LoggingAdvanced.Console
             var message = formatter(state, exception);
 
             if (!string.IsNullOrEmpty(message) || exception != null)
-                WriteMessage(logLevel, Name, eventId.Id, message, exception);
+            {
+                string logName = Settings.IncludeLogNamespace ? FullName : ShortName;
+
+                WriteMessage(logLevel, logName, eventId.Id, message, exception);
+            }
         }
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            return Filter(Name, logLevel);
+            return Filter(FullName, logLevel);
         }
 
         public IDisposable BeginScope<TState>(TState state)
@@ -100,7 +115,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             if (state == null)
                 throw new ArgumentNullException(nameof(state));
 
-            return ConsoleLogScope.Push(Name, state);
+            return ConsoleLogScope.Push(FullName, state);
         }
 
         public virtual void WriteMessage(LogLevel logLevel, string logName, int eventId, string message,

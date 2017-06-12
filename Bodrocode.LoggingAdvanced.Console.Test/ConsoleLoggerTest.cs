@@ -13,17 +13,18 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
 {
     public partial class ConsoleLoggerTest
     {
-        private const int _writesPerMsgDefault = 2;
-        private readonly string _paddingString;
-        private const string _loggerName = "test";
+        private int _writesPerMsgDefault = 2;
+        private string _loggerName = "test";
+        private string _paddingString;
 
-        private static (AdvancedConsoleLogger logger, ConsoleSink sink) SetUp(
+        private (AdvancedConsoleLogger logger, ConsoleSink sink) SetUp(
             Func<string, LogLevel, bool> filter, 
             ConsoleLoggerSettings settings)
         {
             // Arrange
             var sink = new ConsoleSink();
             var console = new TestConsole(sink);
+            
             var logger = new AdvancedConsoleLogger(_loggerName, filter, settings);
             logger.Console = console;
 
@@ -83,7 +84,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
         }
 
         [Fact]
-        public void IncludeZeroEventId_IsFalse_HasNoEventId()
+        public void IncludeZeroEventId_IsFalse_NoEventId()
         {
             // Arrange
             var settings = ConsoleLoggerSettings.Default;
@@ -98,18 +99,39 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
             Assert.Equal(GetMessage("crit", 0, "foo", null, settings), GetMessage(sink, 0, 2));
         }
 
-
-        private string GetMessage(ConsoleSink sink, int messageIndex, int writesCount = _writesPerMsgDefault)
+        [Fact]
+        public void IncludeLogNamespace_IsFalse_NoNamespace()
         {
-            return GetMessage(sink.Writes.GetRange(messageIndex * writesCount, writesCount));
+            _loggerName = "Root.Sub.BarLogger";
+            // Arrange
+            var settings = ConsoleLoggerSettings.Default;
+            settings.IncludeLogNamespace = false;
+            var tuple = SetUp(null, settings);
+            var logger = tuple.logger;
+            var sink = tuple.sink;
+
+            // Act
+            logger.LogCritical(eventId: 0, message: "foo");
+
+            Assert.Equal(GetMessage("crit", 0, "foo", null, settings, "BarLogger"), 
+                GetMessage(sink, 0, 2));
         }
 
-        private string GetMessage<TState>(
+
+        private string GetMessage(ConsoleSink sink, int messageIndex, int? writesCount = null)
+        {
+            int count = writesCount ?? _writesPerMsgDefault;
+
+            return GetMessage(sink.Writes.GetRange(messageIndex * count, count));
+        }
+
+        private string GetMessage(
             string logLevelString, 
             int eventId, 
-            TState state, 
+            string text, 
             Exception exception, 
-            ConsoleLoggerSettings settings)
+            ConsoleLoggerSettings settings,
+            string actualLoggerName = null)
         {
             var loglevelStringWithPadding = $"{logLevelString}: ";
 
@@ -121,12 +143,16 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
                 ? exception + Environment.NewLine
                 : string.Empty;
 
+            string loggerName = settings.IncludeLogNamespace 
+                ? _loggerName 
+                : actualLoggerName;
+
             string message = loglevelStringWithPadding
-                          + $"{_loggerName}"
+                          + loggerName
                           + eventIdStr
                           + (settings.IncludeLineBreak ? Environment.NewLine : "")
                           + _paddingString
-                          + ReplaceMessageNewLinesWithPadding(state?.ToString())
+                          + ReplaceMessageNewLinesWithPadding(text?.ToString())
                           + Environment.NewLine
                           + exStr;
 
