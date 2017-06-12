@@ -1,13 +1,13 @@
 using System;
 
-namespace Bodrocode.LoggingAdvanced.Console
+namespace Bodrocode.LoggingAdvanced.Console.Settings
 {
     public interface ITimestampProvider
     {
         string GetTimestamp();
     }
 
-    public class TimestampProvider : ITimestampProvider
+    internal class TimestampProvider : ITimestampProvider
     {
         public string GetTimestamp() => $"[{DateTime.Now}]";
     }

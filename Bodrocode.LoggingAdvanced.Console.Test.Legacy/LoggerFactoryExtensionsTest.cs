@@ -1,6 +1,7 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using Bodrocode.LoggingAdvanced.Console.Test.Legacy.Fakes;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;

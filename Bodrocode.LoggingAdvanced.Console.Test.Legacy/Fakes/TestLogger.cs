@@ -5,7 +5,7 @@ using System;
 using Bodrocode.LoggingAdvanced.Console.Test.Legacy.Utils;
 using Microsoft.Extensions.Logging;
 
-namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
+namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy.Fakes
 {
     public class TestLogger : ILogger
     {

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Bodrocode.LoggingAdvanced.Console.Test.Legacy.Utils;
 
-namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
+namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy.Fakes
 {
     public class TestSink
     {

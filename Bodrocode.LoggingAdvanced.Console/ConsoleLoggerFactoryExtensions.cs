@@ -21,7 +21,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         /// Adds a console logger that is enabled for <see cref="LogLevel"/>.Information or higher.
         /// </summary>
         /// <param name="factory"></param>
-        /// in the output.</param>
+        /// <param name="settings"></param>
         public static ILoggerFactory AddConsoleAdvanced(
             this ILoggerFactory factory,
             IConsoleLoggerSettings settings)
@@ -48,7 +48,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         /// </summary>
         /// <param name="factory"></param>
         /// <param name="minLevel">The minimum <see cref="LogLevel"/> to be logged</param>
-        /// in the output.</param>
+        /// <param name="settings"></param>
         public static ILoggerFactory AddConsoleAdvanced(
             this ILoggerFactory factory,
             LogLevel minLevel,

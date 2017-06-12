@@ -4,6 +4,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Bodrocode.LoggingAdvanced.Console.Test.Legacy.Fakes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Internal;
 using Xunit;

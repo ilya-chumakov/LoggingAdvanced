@@ -4,7 +4,7 @@
 using System;
 using Microsoft.Extensions.Logging;
 
-namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
+namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy.Fakes
 {
     public static class TestLoggerExtensions
     {

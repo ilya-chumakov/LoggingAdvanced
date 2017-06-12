@@ -6,7 +6,7 @@ using System.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
-namespace Bodrocode.LoggingAdvanced.Console.Test
+namespace Bodrocode.LoggingAdvanced.Console.Test.Fakes
 {
     internal class MockConsoleLoggerSettings : IConsoleLoggerSettings
     {

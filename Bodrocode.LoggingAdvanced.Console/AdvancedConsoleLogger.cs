@@ -5,6 +5,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using Bodrocode.LoggingAdvanced.Console.Internal;
+using Bodrocode.LoggingAdvanced.Console.Settings;
 using Microsoft.Extensions.Logging;
 
 namespace Bodrocode.LoggingAdvanced.Console

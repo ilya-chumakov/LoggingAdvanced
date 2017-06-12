@@ -3,7 +3,7 @@
 
 using Microsoft.Extensions.Logging;
 
-namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
+namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy.Fakes
 {
     public class TestLoggerFactory : ILoggerFactory
     {
