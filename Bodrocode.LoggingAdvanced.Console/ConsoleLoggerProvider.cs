@@ -17,28 +17,28 @@ namespace Bodrocode.LoggingAdvanced.Console
 
         public ConsoleLoggerProvider(Func<string, LogLevel, bool> filter, IConsoleLoggerSettings settings)
         {
-            if (filter == null)
-            {
-                throw new ArgumentNullException(nameof(filter));
-            }
+            //if (filter == null)
+            //{
+            //    throw new ArgumentNullException(nameof(filter));
+            //}
 
-            _filter = filter;
-            _settings = settings;
-        }
-
-        public ConsoleLoggerProvider(IConsoleLoggerSettings settings)
-        {
             if (settings == null)
             {
                 throw new ArgumentNullException(nameof(settings));
             }
 
+            _filter = filter;
             _settings = settings;
 
             if (_settings.ChangeToken != null)
             {
                 _settings.ChangeToken.RegisterChangeCallback(OnConfigurationReload, null);
             }
+        }
+
+        public ConsoleLoggerProvider(IConsoleLoggerSettings settings)
+            : this(null, settings)
+        {
         }
 
         private void OnConfigurationReload(object state)
@@ -72,11 +72,6 @@ namespace Bodrocode.LoggingAdvanced.Console
 
         private Func<string, LogLevel, bool> GetFilter(string name, IConsoleLoggerSettings settings)
         {
-            if (_filter != null)
-            {
-                return _filter;
-            }
-
             if (settings != null)
             {
                 foreach (var prefix in GetKeyPrefixes(name))
@@ -87,6 +82,11 @@ namespace Bodrocode.LoggingAdvanced.Console
                         return (n, l) => l >= level;
                     }
                 }
+            }
+
+            if (_filter != null)
+            {
+                return _filter;
             }
 
             return (n, l) => false;
