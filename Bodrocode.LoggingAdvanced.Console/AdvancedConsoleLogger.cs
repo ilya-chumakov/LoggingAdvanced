@@ -122,9 +122,16 @@ namespace Bodrocode.LoggingAdvanced.Console
                 // category and event id
                 logBuilder.Append(_loglevelPadding);
                 logBuilder.Append(logName);
-                logBuilder.Append("[");
-                logBuilder.Append(eventId);
-                logBuilder.Append("]");
+
+                if (!Settings.IncludeZeroEventId && eventId == 0)
+                {
+                }
+                else
+                {
+                    logBuilder.Append("[");
+                    logBuilder.Append(eventId);
+                    logBuilder.Append("]");
+                }
 
                 if (Settings.IncludeLineBreak) logBuilder.AppendLine();
 

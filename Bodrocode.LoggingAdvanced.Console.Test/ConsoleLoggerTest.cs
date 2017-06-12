@@ -37,7 +37,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
         }
 
         [Fact]
-        public void Log_IncludeLineBreakIsFalse_NoLineBreak()
+        public void IncludeLineBreak_IsFalse_NoLineBreak()
         {
             // Arrange
             var settings = ConsoleLoggerSettings.Default;
@@ -63,7 +63,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
         }
 
         [Fact]
-        public void Log_IncludeTimestampIsTrue_HasTimestamp()
+        public void IncludeTimestamp_IsTrue_HasTimestamp()
         {
             // Arrange
             var settings = ConsoleLoggerSettings.Default;
@@ -82,6 +82,23 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
             Assert.Equal(GetMessage("[dt] crit", 0, "foo", null, settings), GetMessage(sink, 0, 3));
         }
 
+        [Fact]
+        public void IncludeZeroEventId_IsFalse_HasNoEventId()
+        {
+            // Arrange
+            var settings = ConsoleLoggerSettings.Default;
+            settings.IncludeZeroEventId = false;
+            var tuple = SetUp(null, settings);
+            var logger = tuple.logger;
+            var sink = tuple.sink;
+
+            // Act
+            logger.LogCritical(eventId: 0, message: "foo");
+
+            Assert.Equal(GetMessage("crit", 0, "foo", null, settings), GetMessage(sink, 0, 2));
+        }
+
+
         private string GetMessage(ConsoleSink sink, int messageIndex, int writesCount = _writesPerMsgDefault)
         {
             return GetMessage(sink.Writes.GetRange(messageIndex * writesCount, writesCount));
@@ -96,15 +113,22 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
         {
             var loglevelStringWithPadding = $"{logLevelString}: ";
 
+            string eventIdStr = !settings.IncludeZeroEventId && eventId == 0 
+                ? ""
+                : $"[{eventId}]";
+
+            string exStr = exception != null
+                ? exception + Environment.NewLine
+                : string.Empty;
+
             string message = loglevelStringWithPadding
-                          + $"{_loggerName}[{eventId}]"
+                          + $"{_loggerName}"
+                          + eventIdStr
                           + (settings.IncludeLineBreak ? Environment.NewLine : "")
                           + _paddingString
                           + ReplaceMessageNewLinesWithPadding(state?.ToString())
                           + Environment.NewLine
-                          + (exception != null
-                              ? exception.ToString() + Environment.NewLine
-                              : string.Empty);
+                          + exStr;
 
             return message;
         }

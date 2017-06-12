@@ -102,8 +102,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
 
         [Theory]
         [InlineData("Route with name 'Default' was not found.")]
-        public void Writes_NewLine_WhenExceptionIsProvided(
-            string message)
+        public void Writes_NewLine_WhenExceptionIsProvided(string message)
         {
             // Arrange
             var t = SetUp(null);
@@ -870,6 +869,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             public bool IncludeScopes { get; set; }
             public bool IncludeLineBreak { get; }
             public bool IncludeTimestamp { get; }
+            public bool IncludeZeroEventId { get; }
 
             public IConsoleLoggerSettings Reload()
             {

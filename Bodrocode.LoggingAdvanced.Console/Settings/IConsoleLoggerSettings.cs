@@ -27,5 +27,11 @@ namespace Bodrocode.LoggingAdvanced.Console
         ///     [06/09/2017 14:00:45] err: FooClass[42] \n foo message
         /// </summary>
         bool IncludeTimestamp { get; }
+
+        /// <summary>
+        /// Should EventId=0 be included or not. For example:
+        ///     FooClass[0] -> FooClass
+        /// </summary>
+        bool IncludeZeroEventId { get; }
     }
 }
