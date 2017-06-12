@@ -43,6 +43,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         }
 
         public bool IncludeLineBreak { get; }
+        public bool IncludeTimestamp { get; }
 
         public IConsoleLoggerSettings Reload()
         {

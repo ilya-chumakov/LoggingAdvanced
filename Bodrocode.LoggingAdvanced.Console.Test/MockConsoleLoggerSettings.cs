@@ -18,6 +18,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
 
         public bool IncludeScopes { get; set; }
         public bool IncludeLineBreak { get; }
+        public bool IncludeTimestamp { get; }
 
         public IConsoleLoggerSettings Reload()
         {

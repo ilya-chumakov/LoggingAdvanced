@@ -15,9 +15,17 @@ namespace Bodrocode.LoggingAdvanced.Console
     public interface IReadonlyLoggerSettings
     {
         bool IncludeScopes { get; }
+        
         /// <summary>
-        /// Line break after log name and EventId: FooClass[42] \n foo message
+        /// Line break after log name and EventId. For example:
+        ///     err: FooClass[42] \n foo message
         /// </summary>
         bool IncludeLineBreak { get; }
+
+        /// <summary>
+        /// Datetime before message level. For example:
+        ///     [06/09/2017 14:00:45] err: FooClass[42] \n foo message
+        /// </summary>
+        bool IncludeTimestamp { get; }
     }
 }

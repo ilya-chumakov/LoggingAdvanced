@@ -869,6 +869,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
 
             public bool IncludeScopes { get; set; }
             public bool IncludeLineBreak { get; }
+            public bool IncludeTimestamp { get; }
 
             public IConsoleLoggerSettings Reload()
             {

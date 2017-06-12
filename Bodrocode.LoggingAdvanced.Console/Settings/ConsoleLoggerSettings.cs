@@ -15,7 +15,8 @@ namespace Bodrocode.LoggingAdvanced.Console
         public static ConsoleLoggerSettings Default => new ConsoleLoggerSettings
         {
             IncludeScopes = false,
-            IncludeLineBreak = true
+            IncludeLineBreak = true,
+            IncludeTimestamp = false
         };
 
         /// <summary>
@@ -24,7 +25,8 @@ namespace Bodrocode.LoggingAdvanced.Console
         public static ConsoleLoggerSettings Optimized => new ConsoleLoggerSettings
         {
             IncludeScopes = false,
-            IncludeLineBreak = false
+            IncludeLineBreak = false,
+            IncludeTimestamp = true
         };
 
         /// <inheritdoc cref="IReadonlyLoggerSettings"/>
@@ -35,6 +37,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         public IChangeToken ChangeToken { get; set; }
 
         public IDictionary<string, LogLevel> Switches { get; set; } = new Dictionary<string, LogLevel>();
+        public bool IncludeTimestamp { get; set; }
 
         public IConsoleLoggerSettings Reload()
         {

@@ -26,6 +26,7 @@ namespace Bodrocode.LoggingAdvanced.Console
 
         private IConsole _console;
         private Func<string, LogLevel, bool> _filter;
+        private ITimestampProvider _timestampProvider;
 
         static AdvancedConsoleLogger()
         {
@@ -48,30 +49,26 @@ namespace Bodrocode.LoggingAdvanced.Console
                 Console = new WindowsLogConsole();
             else
                 Console = new AnsiLogConsole(new AnsiSystemConsole());
+
+            TimestampProvider = new TimestampProvider();
         }
 
         public IConsole Console
         {
             get => _console;
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException(nameof(value));
-
-                _console = value;
-            }
+            set => _console = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         public Func<string, LogLevel, bool> Filter
         {
             get => _filter;
-            set
-            {
-                if (value == null)
-                    throw new ArgumentNullException(nameof(value));
+            set => _filter = value ?? throw new ArgumentNullException(nameof(value));
+        }
 
-                _filter = value;
-            }
+        public ITimestampProvider TimestampProvider
+        {
+            get => _timestampProvider;
+            set => _timestampProvider = value ?? throw new ArgumentNullException(nameof(value));
         }
 
         public string Name { get; }
@@ -118,9 +115,6 @@ namespace Bodrocode.LoggingAdvanced.Console
             var logLevelColors = default(ConsoleColors);
             var logLevelString = string.Empty;
 
-            // Example:
-            // INFO: ConsoleApp.Program[10]
-            //       Request received
             if (!string.IsNullOrEmpty(message))
             {
                 logLevelColors = GetLogLevelConsoleColors(logLevel);
@@ -156,11 +150,20 @@ namespace Bodrocode.LoggingAdvanced.Console
                 var logMessage = logBuilder.ToString();
                 lock (_lock)
                 {
+                    if (Settings.IncludeTimestamp)
+                    {
+                        string time = _timestampProvider.GetTimestamp();
+
+                        Console.Write(time + " ", DefaultConsoleColor, DefaultConsoleColor);
+                    }
+
                     if (!string.IsNullOrEmpty(logLevelString))
+                    {
                         Console.Write(
                             logLevelString,
                             logLevelColors.Background,
                             logLevelColors.Foreground);
+                    }
 
                     // use default colors from here on
                     Console.Write(logMessage, DefaultConsoleColor, DefaultConsoleColor);

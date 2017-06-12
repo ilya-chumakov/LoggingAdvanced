@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Bodrocode.LoggingAdvanced.Console.Test.Legacy.Console;
 using Microsoft.Extensions.Logging;
+using Moq;
 using Xunit;
 
 namespace Bodrocode.LoggingAdvanced.Console.Test
 {
     public partial class ConsoleLoggerTest
     {
-        private const int WritesPerMsg = 2;
+        private const int _writesPerMsgDefault = 2;
         private readonly string _paddingString;
         private const string _loggerName = "test";
 
@@ -61,9 +62,29 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
             Assert.Equal(GetMessage("crit", 0, "[null]", exception, settings), GetMessage(sink, 3));
         }
 
-        private string GetMessage(ConsoleSink sink, int messageIndex)
+        [Fact]
+        public void Log_IncludeTimestampIsTrue_HasTimestamp()
         {
-            return GetMessage(sink.Writes.GetRange(messageIndex * WritesPerMsg, WritesPerMsg));
+            // Arrange
+            var settings = ConsoleLoggerSettings.Default;
+            settings.IncludeTimestamp = true;
+            var tuple = SetUp(null, settings);
+            var logger = tuple.logger;
+            var sink = tuple.sink;
+
+            var time = new Mock<ITimestampProvider>();
+            time.Setup(x => x.GetTimestamp()).Returns("[dt]");
+            logger.TimestampProvider = time.Object;
+
+            // Act
+            logger.LogCritical(eventId: 0, message: "foo");
+
+            Assert.Equal(GetMessage("[dt] crit", 0, "foo", null, settings), GetMessage(sink, 0, 3));
+        }
+
+        private string GetMessage(ConsoleSink sink, int messageIndex, int writesCount = _writesPerMsgDefault)
+        {
+            return GetMessage(sink.Writes.GetRange(messageIndex * writesCount, writesCount));
         }
 
         private string GetMessage<TState>(
