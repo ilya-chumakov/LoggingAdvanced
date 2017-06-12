@@ -55,7 +55,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             return new Tuple<ILoggerFactory, ConsoleSink>(factory, sink);
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void LogsWhenMessageIsNotProvided()
         {
             // Arrange
@@ -76,7 +76,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Assert.Equal(GetMessage("crit", 0, "[null]", exception), GetMessage(sink.Writes.GetRange(2 * WritesPerMsg, WritesPerMsg)));
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void DoesNotLog_NewLine_WhenNoExceptionIsProvided()
         {
             // Arrange
@@ -101,7 +101,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
 
         //[Theory]
         //[InlineData("Route with name 'Default' was not found.")]
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void Writes_NewLine_WhenExceptionIsProvided()
         //string message)
         {
@@ -137,7 +137,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Assert.Throws<ArgumentNullException>(() => logger.Log<object>(LogLevel.Trace, 1, "empty", new Exception(), null));
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void LogsWhenNullFilterGiven()
         {
             // Arrange
@@ -409,7 +409,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Assert.Equal(TestConsole.DefaultForegroundColor, write.ForegroundColor);
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void WriteCore_LogsCorrectMessages()
         {
             // Arrange
@@ -483,7 +483,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Assert.Equal(TestConsole.DefaultForegroundColor, write.ForegroundColor);
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void WritingScopes_LogsExpectedMessage()
         {
             // Arrange
@@ -512,7 +512,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Assert.Equal(TestConsole.DefaultForegroundColor, write.ForegroundColor);
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void WritingNestedScope_LogsNullScopeName()
         {
             // Arrange
@@ -542,7 +542,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Assert.Equal(expectedHeader + expectedScope + expectedMessage, write.Message);
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void WritingNestedScopes_LogsExpectedMessage()
         {
             // Arrange
@@ -574,7 +574,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Assert.Equal(TestConsole.DefaultForegroundColor, write.ForegroundColor);
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void WritingMultipleScopes_LogsExpectedMessage()
         {
             // Arrange
@@ -777,7 +777,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Assert.Equal(expected, sink.Writes[5].Message);
         }
 
-        [Fact(Skip = "expects the hard-coded test")]
+        [Fact(Skip = "expects the hard-coded text")]
         public void WriteCore_MessageWithNullException()
         {
             // Arrange
