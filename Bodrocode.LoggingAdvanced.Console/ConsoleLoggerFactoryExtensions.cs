@@ -82,7 +82,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             Func<string, LogLevel, bool> filter,
             IConsoleLoggerSettings settings)
         {
-            factory.AddProvider(new ConsoleLoggerProvider(filter, settings));
+            factory.AddProvider(new AdvancedConsoleLoggerProvider(filter, settings));
 
             return factory;
         }
@@ -93,7 +93,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         {
             var settings = new ConfigurationConsoleLoggerSettings(configuration);
 
-            factory.AddProvider(new ConsoleLoggerProvider(settings));
+            factory.AddProvider(new AdvancedConsoleLoggerProvider(settings));
 
             return factory;
         }

@@ -14,18 +14,18 @@ namespace Bodrocode.LoggingAdvanced.Console
         // Writing to console is not an atomic operation in the current implementation and since multiple logger
         // instances are created with a different name. Also since Console is global, using a static lock is fine.
         private static readonly object _lock = new object();
+
         private static readonly string _loglevelPadding = ": ";
         private static readonly string _messagePadding;
         private static readonly string _newLineWithMessagePadding;
+
+        [ThreadStatic] private static StringBuilder _logBuilder;
 
         // ConsoleColor does not have a value to specify the 'Default' color
         private readonly ConsoleColor? DefaultConsoleColor = null;
 
         private IConsole _console;
         private Func<string, LogLevel, bool> _filter;
-
-        [ThreadStatic]
-        private static StringBuilder _logBuilder;
 
         static AdvancedConsoleLogger()
         {
@@ -34,36 +34,29 @@ namespace Bodrocode.LoggingAdvanced.Console
             _newLineWithMessagePadding = Environment.NewLine + _messagePadding;
         }
 
-        public AdvancedConsoleLogger(string name, Func<string, LogLevel, bool> filter, bool includeScopes)
+        public AdvancedConsoleLogger(string name, Func<string, LogLevel, bool> filter,
+            IReadonlyLoggerSettings settings)
         {
             if (name == null)
-            {
                 throw new ArgumentNullException(nameof(name));
-            }
 
             Name = name;
             Filter = filter ?? ((category, logLevel) => true);
-            IncludeScopes = includeScopes;
+            Settings = settings;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
                 Console = new WindowsLogConsole();
-            }
             else
-            {
                 Console = new AnsiLogConsole(new AnsiSystemConsole());
-            }
         }
 
         public IConsole Console
         {
-            get { return _console; }
+            get => _console;
             set
             {
                 if (value == null)
-                {
                     throw new ArgumentNullException(nameof(value));
-                }
 
                 _console = value;
             }
@@ -71,51 +64,56 @@ namespace Bodrocode.LoggingAdvanced.Console
 
         public Func<string, LogLevel, bool> Filter
         {
-            get { return _filter; }
+            get => _filter;
             set
             {
                 if (value == null)
-                {
                     throw new ArgumentNullException(nameof(value));
-                }
 
                 _filter = value;
             }
         }
 
-        public bool IncludeScopes { get; set; }
-
         public string Name { get; }
 
-        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+        public IReadonlyLoggerSettings Settings { get; set; }
+
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception,
+            Func<TState, Exception, string> formatter)
         {
             if (!IsEnabled(logLevel))
-            {
                 return;
-            }
 
             if (formatter == null)
-            {
                 throw new ArgumentNullException(nameof(formatter));
-            }
 
             var message = formatter(state, exception);
 
             if (!string.IsNullOrEmpty(message) || exception != null)
-            {
                 WriteMessage(logLevel, Name, eventId.Id, message, exception);
-            }
         }
 
-        public virtual void WriteMessage(LogLevel logLevel, string logName, int eventId, string message, Exception exception)
+        public bool IsEnabled(LogLevel logLevel)
+        {
+            return Filter(Name, logLevel);
+        }
+
+        public IDisposable BeginScope<TState>(TState state)
+        {
+            if (state == null)
+                throw new ArgumentNullException(nameof(state));
+
+            return ConsoleLogScope.Push(Name, state);
+        }
+
+        public virtual void WriteMessage(LogLevel logLevel, string logName, int eventId, string message,
+            Exception exception)
         {
             var logBuilder = _logBuilder;
             _logBuilder = null;
 
             if (logBuilder == null)
-            {
                 logBuilder = new StringBuilder();
-            }
 
             var logLevelColors = default(ConsoleColors);
             var logLevelString = string.Empty;
@@ -133,11 +131,11 @@ namespace Bodrocode.LoggingAdvanced.Console
                 logBuilder.Append("[[");
                 logBuilder.Append(eventId);
                 logBuilder.AppendLine("]");
+
                 // scope information
-                if (IncludeScopes)
-                {
+                if (Settings.IncludeScopes)
                     GetScopeInformation(logBuilder);
-                }
+
                 // message
                 logBuilder.Append(_messagePadding);
                 var len = logBuilder.Length;
@@ -149,10 +147,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             // System.InvalidOperationException
             //    at Namespace.Class.Function() in File:line X
             if (exception != null)
-            {
-                // exception message
                 logBuilder.AppendLine(exception.ToString());
-            }
 
             if (logBuilder.Length > 0)
             {
@@ -160,13 +155,10 @@ namespace Bodrocode.LoggingAdvanced.Console
                 lock (_lock)
                 {
                     if (!string.IsNullOrEmpty(logLevelString))
-                    {
-                        // log level string
                         Console.Write(
                             logLevelString,
                             logLevelColors.Background,
                             logLevelColors.Foreground);
-                    }
 
                     // use default colors from here on
                     Console.Write(logMessage, DefaultConsoleColor, DefaultConsoleColor);
@@ -179,25 +171,8 @@ namespace Bodrocode.LoggingAdvanced.Console
 
             logBuilder.Clear();
             if (logBuilder.Capacity > 1024)
-            {
                 logBuilder.Capacity = 1024;
-            }
             _logBuilder = logBuilder;
-        }
-
-        public bool IsEnabled(LogLevel logLevel)
-        {
-            return Filter(Name, logLevel);
-        }
-
-        public IDisposable BeginScope<TState>(TState state)
-        {
-            if (state == null)
-            {
-                throw new ArgumentNullException(nameof(state));
-            }
-
-            return ConsoleLogScope.Push(Name, state);
         }
 
         private static string GetLogLevelString(LogLevel logLevel)
@@ -253,13 +228,9 @@ namespace Bodrocode.LoggingAdvanced.Console
             while (current != null)
             {
                 if (length == builder.Length)
-                {
                     scopeLog = $"=> {current}";
-                }
                 else
-                {
                     scopeLog = $"=> {current} ";
-                }
 
                 builder.Insert(length, scopeLog);
                 current = current.Parent;

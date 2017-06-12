@@ -9,16 +9,11 @@ namespace Bodrocode.LoggingAdvanced.Console
 {
     public class ConsoleLoggerSettings : IConsoleLoggerSettings
     {
-        static ConsoleLoggerSettings()
+        public static ConsoleLoggerSettings Default => new ConsoleLoggerSettings
         {
-            Default = new ConsoleLoggerSettings()
-            {
-                IncludeScopes = false,
-            };
-        }
+            IncludeScopes = false
+        };
 
-        public static ConsoleLoggerSettings Default { get; }
-        
         public bool IncludeScopes { get; set; }
 
         public IChangeToken ChangeToken { get; set; }

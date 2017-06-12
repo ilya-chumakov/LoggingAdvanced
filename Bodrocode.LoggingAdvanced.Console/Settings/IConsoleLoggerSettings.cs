@@ -3,14 +3,17 @@ using Microsoft.Extensions.Primitives;
 
 namespace Bodrocode.LoggingAdvanced.Console
 {
-    public interface IConsoleLoggerSettings
+    public interface IConsoleLoggerSettings : IReadonlyLoggerSettings
     {
-        bool IncludeScopes { get; }
-
         IChangeToken ChangeToken { get; }
 
         bool TryGetSwitch(string name, out LogLevel level);
 
         IConsoleLoggerSettings Reload();
+    }
+
+    public interface IReadonlyLoggerSettings
+    {
+        bool IncludeScopes { get; }
     }
 }

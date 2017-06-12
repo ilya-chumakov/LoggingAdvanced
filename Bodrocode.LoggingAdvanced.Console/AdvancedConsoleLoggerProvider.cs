@@ -8,14 +8,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Bodrocode.LoggingAdvanced.Console
 {
-    public class ConsoleLoggerProvider : ILoggerProvider
+    public class AdvancedConsoleLoggerProvider : ILoggerProvider
     {
         private readonly ConcurrentDictionary<string, AdvancedConsoleLogger> _loggers = new ConcurrentDictionary<string, AdvancedConsoleLogger>();
 
         private readonly Func<string, LogLevel, bool> _filter;
         private IConsoleLoggerSettings _settings;
 
-        public ConsoleLoggerProvider(Func<string, LogLevel, bool> filter, IConsoleLoggerSettings settings)
+        public AdvancedConsoleLoggerProvider(Func<string, LogLevel, bool> filter, IConsoleLoggerSettings settings)
         {
             //if (filter == null)
             //{
@@ -36,7 +36,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             }
         }
 
-        public ConsoleLoggerProvider(IConsoleLoggerSettings settings)
+        public AdvancedConsoleLoggerProvider(IConsoleLoggerSettings settings)
             : this(null, settings)
         {
         }
@@ -50,7 +50,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             foreach (var logger in _loggers.Values)
             {
                 logger.Filter = GetFilter(logger.Name, _settings);
-                logger.IncludeScopes = _settings.IncludeScopes;
+                logger.Settings = _settings;
             }
 
             // The token will change each time it reloads, so we need to register again.
@@ -67,7 +67,7 @@ namespace Bodrocode.LoggingAdvanced.Console
 
         private AdvancedConsoleLogger CreateLoggerImplementation(string name)
         {
-            return new AdvancedConsoleLogger(name, GetFilter(name, _settings), _settings.IncludeScopes);
+            return new AdvancedConsoleLogger(name, GetFilter(name, _settings), _settings);
         }
 
         private Func<string, LogLevel, bool> GetFilter(string name, IConsoleLoggerSettings settings)

@@ -26,7 +26,8 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             // Arrange
             var sink = new ConsoleSink();
             var console = new TestConsole(sink);
-            var logger = new AdvancedConsoleLogger(_loggerName, filter, includeScopes);
+            var settings = new ConsoleLoggerSettings() { IncludeScopes = includeScopes };
+            var logger = new AdvancedConsoleLogger(_loggerName, filter, settings);
             logger.Console = console;
             return new Tuple<AdvancedConsoleLogger, ConsoleSink>(logger, sink);
         }
@@ -70,8 +71,8 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
 
             // Assert
             Assert.Equal(6, sink.Writes.Count);
-            Assert.Equal(GetMessage("crit", 0, "[null]", null     ), GetMessage(sink.Writes.GetRange(0 * WritesPerMsg, WritesPerMsg)));
-            Assert.Equal(GetMessage("crit", 0, "[null]", null     ), GetMessage(sink.Writes.GetRange(1 * WritesPerMsg, WritesPerMsg)));
+            Assert.Equal(GetMessage("crit", 0, "[null]", null), GetMessage(sink.Writes.GetRange(0 * WritesPerMsg, WritesPerMsg)));
+            Assert.Equal(GetMessage("crit", 0, "[null]", null), GetMessage(sink.Writes.GetRange(1 * WritesPerMsg, WritesPerMsg)));
             Assert.Equal(GetMessage("crit", 0, "[null]", exception), GetMessage(sink.Writes.GetRange(2 * WritesPerMsg, WritesPerMsg)));
         }
 
@@ -92,7 +93,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
 
             // Assert
             Assert.Equal(8, sink.Writes.Count);
-            Assert.Equal(GetMessage("crit",  0, logMessage, null), GetMessage(sink.Writes.GetRange(0 * WritesPerMsg, WritesPerMsg)));
+            Assert.Equal(GetMessage("crit", 0, logMessage, null), GetMessage(sink.Writes.GetRange(0 * WritesPerMsg, WritesPerMsg)));
             Assert.Equal(GetMessage("crit", 10, logMessage, null), GetMessage(sink.Writes.GetRange(1 * WritesPerMsg, WritesPerMsg)));
             Assert.Equal(GetMessage("crit", 10, logMessage, null), GetMessage(sink.Writes.GetRange(2 * WritesPerMsg, WritesPerMsg)));
             Assert.Equal(GetMessage("crit", 10, logMessage, null), GetMessage(sink.Writes.GetRange(3 * WritesPerMsg, WritesPerMsg)));
@@ -102,7 +103,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
         //[InlineData("Route with name 'Default' was not found.")]
         [Fact(Skip = "expects the hard-coded test")]
         public void Writes_NewLine_WhenExceptionIsProvided()
-            //string message)
+        //string message)
         {
             string message = null;
             // Arrange
@@ -759,12 +760,12 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             var expected = ex.ToString() + Environment.NewLine;
 
             // Act
-            logger.Log(LogLevel.Critical, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Error, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Warning, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Information, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Debug, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Trace, 0, message, ex, (s,e) => s);
+            logger.Log(LogLevel.Critical, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Error, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Warning, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Information, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Debug, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Trace, 0, message, ex, (s, e) => s);
 
             // Assert
             Assert.Equal(6, sink.Writes.Count);
@@ -786,12 +787,12 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             Exception ex = null;
 
             // Act
-            logger.Log(LogLevel.Critical, 0, _state, ex, (s,e) => s);
-            logger.Log(LogLevel.Error, 0, _state, ex, (s,e) => s);
-            logger.Log(LogLevel.Warning, 0, _state, ex, (s,e) => s);
-            logger.Log(LogLevel.Information, 0, _state, ex, (s,e) => s);
-            logger.Log(LogLevel.Debug, 0, _state, ex, (s,e) => s);
-            logger.Log(LogLevel.Trace, 0, _state, ex, (s,e) => s);
+            logger.Log(LogLevel.Critical, 0, _state, ex, (s, e) => s);
+            logger.Log(LogLevel.Error, 0, _state, ex, (s, e) => s);
+            logger.Log(LogLevel.Warning, 0, _state, ex, (s, e) => s);
+            logger.Log(LogLevel.Information, 0, _state, ex, (s, e) => s);
+            logger.Log(LogLevel.Debug, 0, _state, ex, (s, e) => s);
+            logger.Log(LogLevel.Trace, 0, _state, ex, (s, e) => s);
 
             // Assert
             Assert.Equal(12, sink.Writes.Count);
@@ -814,12 +815,12 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             string message = null;
 
             // Act
-            logger.Log(LogLevel.Critical, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Error, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Warning, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Information, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Debug, 0, message, ex, (s,e) => s);
-            logger.Log(LogLevel.Trace, 0, message, ex, (s,e) => s);
+            logger.Log(LogLevel.Critical, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Error, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Warning, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Information, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Debug, 0, message, ex, (s, e) => s);
+            logger.Log(LogLevel.Trace, 0, message, ex, (s, e) => s);
 
             // Assert
             Assert.Equal(0, sink.Writes.Count);
@@ -839,9 +840,9 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
                 + _paddingString
                 + ReplaceMessageNewLinesWithPadding(state?.ToString())
                 + Environment.NewLine
-                + ( exception != null
+                + (exception != null
                     ? exception.ToString() + Environment.NewLine
-                    : string.Empty );
+                    : string.Empty);
         }
 
         private string ReplaceMessageNewLinesWithPadding(string message)
