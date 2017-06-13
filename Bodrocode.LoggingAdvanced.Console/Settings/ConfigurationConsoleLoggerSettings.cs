@@ -20,33 +20,11 @@ namespace Bodrocode.LoggingAdvanced.Console
 
         public IChangeToken ChangeToken { get; private set; }
 
-        public bool IncludeScopes
-        {
-            get
-            {
-                bool includeScopes;
-                var value = _configuration["IncludeScopes"];
-                if (string.IsNullOrEmpty(value))
-                {
-                    return false;
-                }
-                else if (bool.TryParse(value, out includeScopes))
-                {
-                    return includeScopes;
-                }
-                else
-                {
-                    var message = $"Configuration value '{value}' for setting '{nameof(IncludeScopes)}' is not supported.";
-                    throw new InvalidOperationException(message);
-                }
-            }
-        }
-
-        //todo read from cfg
-        public bool IncludeLineBreak { get; }
-        public bool IncludeTimestamp { get; }
-        public bool IncludeZeroEventId { get; }
-        public bool IncludeLogNamespace { get; }
+        public bool IncludeScopes => ReadBooleanProperty(nameof(IncludeScopes));
+        public bool IncludeLineBreak => ReadBooleanProperty(nameof(IncludeLineBreak));
+        public bool IncludeTimestamp => ReadBooleanProperty(nameof(IncludeTimestamp));
+        public bool IncludeZeroEventId => ReadBooleanProperty(nameof(IncludeZeroEventId));
+        public bool IncludeLogNamespace => ReadBooleanProperty(nameof(IncludeLogNamespace));
 
         public IConsoleLoggerSettings Reload()
         {
@@ -69,15 +47,24 @@ namespace Bodrocode.LoggingAdvanced.Console
                 level = LogLevel.None;
                 return false;
             }
-            else if (Enum.TryParse<LogLevel>(value, out level))
-            {
+            if (Enum.TryParse(value, out level))
                 return true;
-            }
-            else
+            var message = $"Configuration value '{value}' for category '{name}' is not supported.";
+            throw new InvalidOperationException(message);
+        }
+
+        private bool ReadBooleanProperty(string name)
+        {
+            bool flag;
+            var value = _configuration[name];
+            if (string.IsNullOrEmpty(value))
+                return false;
+            if (bool.TryParse(value, out flag))
             {
-                var message = $"Configuration value '{value}' for category '{name}' is not supported.";
-                throw new InvalidOperationException(message);
+                return flag;
             }
+            var message = $"Configuration value '{value}' for setting '{name}' is not supported.";
+            throw new InvalidOperationException(message);
         }
     }
 }

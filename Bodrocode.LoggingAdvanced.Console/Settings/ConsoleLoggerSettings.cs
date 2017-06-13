@@ -38,9 +38,13 @@ namespace Bodrocode.LoggingAdvanced.Console
 
         /// <inheritdoc cref="IReadonlyLoggerSettings" />
         public bool IncludeLineBreak { get; set; }
+        /// <inheritdoc cref="IReadonlyLoggerSettings" />
         public bool IncludeScopes { get; set; }
+        /// <inheritdoc cref="IReadonlyLoggerSettings" />
         public bool IncludeTimestamp { get; set; }
+        /// <inheritdoc cref="IReadonlyLoggerSettings" />
         public bool IncludeZeroEventId { get; set; }
+        /// <inheritdoc cref="IReadonlyLoggerSettings" />
         public bool IncludeLogNamespace { get; set; }
 
         public IConsoleLoggerSettings Reload()
