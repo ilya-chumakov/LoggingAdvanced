@@ -38,5 +38,15 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
 
             Assert.NotNull(logger);
         }
+
+        [Fact]
+        public void Log_WhenCalled_NoException()
+        {
+            _factory.AddConsoleAdvanced(new ConsoleLoggerSettings());
+
+            var logger = _factory.CreateLogger<LoggerFactoryTest>();
+
+            logger.LogCritical("foo");
+        }
     }
 }

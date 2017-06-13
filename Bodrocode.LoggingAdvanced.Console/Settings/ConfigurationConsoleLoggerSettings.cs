@@ -12,20 +12,22 @@ namespace Bodrocode.LoggingAdvanced.Console
     public class ConfigurationConsoleLoggerSettings : IConsoleLoggerSettings
     {
         private readonly IConfiguration _configuration;
+        private readonly ConsoleLoggerSettings _default;
 
         public ConfigurationConsoleLoggerSettings(IConfiguration configuration)
         {
             _configuration = configuration;
             ChangeToken = configuration.GetReloadToken();
+            _default = ConsoleLoggerSettings.Optimized;
         }
 
         public IChangeToken ChangeToken { get; private set; }
 
-        public bool IncludeScopes => ReadBooleanProperty(nameof(IncludeScopes));
-        public bool IncludeLineBreak => ReadBooleanProperty(nameof(IncludeLineBreak));
-        public bool IncludeTimestamp => ReadBooleanProperty(nameof(IncludeTimestamp));
-        public bool IncludeZeroEventId => ReadBooleanProperty(nameof(IncludeZeroEventId));
-        public bool IncludeLogNamespace => ReadBooleanProperty(nameof(IncludeLogNamespace));
+        public bool IncludeScopes => ReadBooleanProperty(nameof(IncludeScopes), _default.IncludeScopes);
+        public bool IncludeLineBreak => ReadBooleanProperty(nameof(IncludeLineBreak), _default.IncludeLineBreak);
+        public bool IncludeTimestamp => ReadBooleanProperty(nameof(IncludeTimestamp), _default.IncludeTimestamp);
+        public bool IncludeZeroEventId => ReadBooleanProperty(nameof(IncludeZeroEventId), _default.IncludeZeroEventId);
+        public bool IncludeLogNamespace => ReadBooleanProperty(nameof(IncludeLogNamespace), _default.IncludeLogNamespace);
         public TimestampPolicy TimestampPolicy => ReadProperty<TimestampPolicy>(nameof(TimestampPolicy));
 
         public IConsoleLoggerSettings Reload()
@@ -55,12 +57,14 @@ namespace Bodrocode.LoggingAdvanced.Console
             throw new InvalidOperationException(message);
         }
 
-        private bool ReadBooleanProperty(string name)
+        private bool ReadBooleanProperty(string name, bool defaultValue)
         {
             bool flag;
             var value = _configuration[name];
+
             if (string.IsNullOrEmpty(value))
-                return false;
+                return defaultValue;
+
             if (bool.TryParse(value, out flag))
             {
                 return flag;
