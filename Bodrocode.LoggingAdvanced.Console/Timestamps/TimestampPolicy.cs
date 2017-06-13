@@ -1,4 +1,4 @@
-namespace Bodrocode.LoggingAdvanced.Console.Times
+namespace Bodrocode.LoggingAdvanced.Console.Timestamps
 {
     public class TimestampPolicy
     {

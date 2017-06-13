@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace Bodrocode.LoggingAdvanced.Console.Times
+namespace Bodrocode.LoggingAdvanced.Console.Timestamps
 {
     internal class TimestampProvider : ITimestampProvider
     {

@@ -5,7 +5,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using Bodrocode.LoggingAdvanced.Console.Internal;
-using Bodrocode.LoggingAdvanced.Console.Times;
+using Bodrocode.LoggingAdvanced.Console.Timestamps;
 using Microsoft.Extensions.Logging;
 
 namespace Bodrocode.LoggingAdvanced.Console
@@ -175,7 +175,7 @@ namespace Bodrocode.LoggingAdvanced.Console
                 {
                     if (Settings.IncludeTimestamp)
                     {
-                        string time = _timestampProvider.GetTimestamp();
+                        string time = _timestampProvider.GetTimestamp(Settings.TimestampPolicy);
 
                         Console.Write(time + " ", DefaultConsoleColor, DefaultConsoleColor);
                     }

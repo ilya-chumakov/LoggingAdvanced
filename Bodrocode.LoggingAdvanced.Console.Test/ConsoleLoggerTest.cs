@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bodrocode.LoggingAdvanced.Console.Test.Legacy.Console;
-using Bodrocode.LoggingAdvanced.Console.Times;
+using Bodrocode.LoggingAdvanced.Console.Timestamps;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -75,7 +75,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
             var sink = tuple.sink;
 
             var time = new Mock<ITimestampProvider>();
-            time.Setup(x => x.GetTimestamp()).Returns("[dt]");
+            time.Setup(x => x.GetTimestamp(It.IsAny<TimestampPolicy>())).Returns("[dt]");
             logger.TimestampProvider = time.Object;
 
             // Act

@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using System.Threading;
+using Bodrocode.LoggingAdvanced.Console.Timestamps;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
@@ -21,6 +22,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Fakes
         public bool IncludeTimestamp { get; }
         public bool IncludeZeroEventId { get; }
         public bool IncludeLogNamespace { get; }
+        public TimestampPolicy TimestampPolicy { get; }
 
         public IConsoleLoggerSettings Reload()
         {

@@ -9,7 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="JsonConfiguration\appsettings-example.json">
+    <Content Include="JsonConfiguration\appsettings-timestamp.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JsonConfiguration\appsettings-booleans.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

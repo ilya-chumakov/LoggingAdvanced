@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Bodrocode.LoggingAdvanced.Console.Test.Legacy.Console;
+using Bodrocode.LoggingAdvanced.Console.Timestamps;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using Moq;
@@ -871,6 +872,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.Legacy
             public bool IncludeTimestamp { get; }
             public bool IncludeZeroEventId { get; }
             public bool IncludeLogNamespace { get; }
+            public TimestampPolicy TimestampPolicy { get; }
 
             public IConsoleLoggerSettings Reload()
             {

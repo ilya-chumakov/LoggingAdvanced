@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Bodrocode.LoggingAdvanced.Console.Timestamps;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
 namespace Bodrocode.LoggingAdvanced.Console
@@ -40,5 +41,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         ///     Root.Sub.FooClass -> FooClass
         /// </summary>
         bool IncludeLogNamespace { get; }
+
+        TimestampPolicy TimestampPolicy { get; }
     }
 }

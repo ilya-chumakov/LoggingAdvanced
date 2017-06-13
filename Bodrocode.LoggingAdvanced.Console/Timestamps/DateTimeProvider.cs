@@ -1,6 +1,6 @@
 using System;
 
-namespace Bodrocode.LoggingAdvanced.Console.Times
+namespace Bodrocode.LoggingAdvanced.Console.Timestamps
 {
     internal class DateTimeProvider : IDateTimeProvider
     {

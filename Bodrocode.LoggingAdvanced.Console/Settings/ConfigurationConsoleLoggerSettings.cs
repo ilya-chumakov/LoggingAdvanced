@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using Bodrocode.LoggingAdvanced.Console.Timestamps;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
@@ -25,6 +26,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         public bool IncludeTimestamp => ReadBooleanProperty(nameof(IncludeTimestamp));
         public bool IncludeZeroEventId => ReadBooleanProperty(nameof(IncludeZeroEventId));
         public bool IncludeLogNamespace => ReadBooleanProperty(nameof(IncludeLogNamespace));
+        public TimestampPolicy TimestampPolicy => ReadProperty<TimestampPolicy>(nameof(TimestampPolicy));
 
         public IConsoleLoggerSettings Reload()
         {
@@ -65,6 +67,16 @@ namespace Bodrocode.LoggingAdvanced.Console
             }
             var message = $"Configuration value '{value}' for setting '{name}' is not supported.";
             throw new InvalidOperationException(message);
+        }
+
+        private TPayload ReadProperty<TPayload>(string name)
+            where TPayload : class 
+        {
+            var value = _configuration.GetSection(name);
+
+            TPayload payload = value.Get<TPayload>();
+
+            return payload;
         }
     }
 }

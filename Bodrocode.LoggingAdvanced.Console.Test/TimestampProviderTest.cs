@@ -1,5 +1,5 @@
 ﻿using System;
-using Bodrocode.LoggingAdvanced.Console.Times;
+using Bodrocode.LoggingAdvanced.Console.Timestamps;
 using Moq;
 using Xunit;
 
@@ -28,7 +28,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
                 TimeZone = timezone
             };
 
-            string datetime = provider.GetTimestamp2(policy);
+            string datetime = provider.GetTimestamp(policy);
 
             Assert.Equal(expected, datetime);
         }
