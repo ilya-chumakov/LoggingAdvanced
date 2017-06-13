@@ -4,7 +4,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Timestamps
     {
         public TimestampPolicy()
         {
-            Format = null;
+            Format = "yyyy.MM.dd HH:mm:ss";
             TimeZone = "Local";
         }
 
