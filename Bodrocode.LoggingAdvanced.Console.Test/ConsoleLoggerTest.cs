@@ -4,8 +4,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bodrocode.LoggingAdvanced.Console.Settings;
 using Bodrocode.LoggingAdvanced.Console.Test.Legacy.Console;
+using Bodrocode.LoggingAdvanced.Console.Times;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;

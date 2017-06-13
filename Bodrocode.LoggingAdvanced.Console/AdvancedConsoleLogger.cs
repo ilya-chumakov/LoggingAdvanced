@@ -5,7 +5,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using Bodrocode.LoggingAdvanced.Console.Internal;
-using Bodrocode.LoggingAdvanced.Console.Settings;
+using Bodrocode.LoggingAdvanced.Console.Times;
 using Microsoft.Extensions.Logging;
 
 namespace Bodrocode.LoggingAdvanced.Console
@@ -54,7 +54,7 @@ namespace Bodrocode.LoggingAdvanced.Console
             else
                 Console = new AnsiLogConsole(new AnsiSystemConsole());
 
-            TimestampProvider = new TimestampProvider();
+            TimestampProvider = new TimestampProvider(new DateTimeProvider());
         }
 
         private string StripNamespace(string name)
