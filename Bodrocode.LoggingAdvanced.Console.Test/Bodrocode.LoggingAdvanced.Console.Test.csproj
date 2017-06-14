@@ -9,6 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="JsonConfiguration\appsettings-switches.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="JsonConfiguration\appsettings-timestamp.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

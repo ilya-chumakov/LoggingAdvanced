@@ -30,7 +30,17 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
         }
 
         [Fact]
-        public void CreateLogger_WithParams_LoggerIsNotNull()
+        public void Log_Default_NoException()
+        {
+            _factory.AddConsoleAdvanced();
+
+            var logger = _factory.CreateLogger<LoggerFactoryTest>();
+
+            logger.LogCritical("foo");
+        }
+
+        [Fact]
+        public void CreateLogger_NewSettingsObject_LoggerIsNotNull()
         {
             _factory.AddConsoleAdvanced(new ConsoleLoggerSettings());
 
@@ -40,7 +50,7 @@ namespace Bodrocode.LoggingAdvanced.Console.Test
         }
 
         [Fact]
-        public void Log_WhenCalled_NoException()
+        public void Log_NewSettingsObject_NoException()
         {
             _factory.AddConsoleAdvanced(new ConsoleLoggerSettings());
 

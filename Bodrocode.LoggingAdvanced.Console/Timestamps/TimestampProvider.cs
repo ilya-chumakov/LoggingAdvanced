@@ -14,6 +14,8 @@ namespace Bodrocode.LoggingAdvanced.Console.Timestamps
 
         public string GetTimestamp(TimestampPolicy policy)
         {
+            if (policy == null) throw new ArgumentNullException(nameof(policy));
+
             DateTime now = TimeZoneInfo.ConvertTime(_dateTimeProvider.Now(), GetTimeZone(policy.TimeZone));
 
             string str = now.ToString(policy.Format, CultureInfo.InvariantCulture);

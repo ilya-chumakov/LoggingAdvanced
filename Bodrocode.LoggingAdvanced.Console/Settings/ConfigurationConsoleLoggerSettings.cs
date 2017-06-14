@@ -28,7 +28,7 @@ namespace Bodrocode.LoggingAdvanced.Console
         public bool IncludeTimestamp => ReadBooleanProperty(nameof(IncludeTimestamp), _default.IncludeTimestamp);
         public bool IncludeZeroEventId => ReadBooleanProperty(nameof(IncludeZeroEventId), _default.IncludeZeroEventId);
         public bool IncludeLogNamespace => ReadBooleanProperty(nameof(IncludeLogNamespace), _default.IncludeLogNamespace);
-        public TimestampPolicy TimestampPolicy => ReadProperty<TimestampPolicy>(nameof(TimestampPolicy));
+        public TimestampPolicy TimestampPolicy => ReadProperty<TimestampPolicy>(nameof(TimestampPolicy), _default.TimestampPolicy);
 
         public IConsoleLoggerSettings Reload()
         {
@@ -73,14 +73,14 @@ namespace Bodrocode.LoggingAdvanced.Console
             throw new InvalidOperationException(message);
         }
 
-        private TPayload ReadProperty<TPayload>(string name)
+        private TPayload ReadProperty<TPayload>(string name, TPayload defaultPayload)
             where TPayload : class 
         {
             var value = _configuration.GetSection(name);
 
             TPayload payload = value.Get<TPayload>();
 
-            return payload;
+            return payload ?? defaultPayload;
         }
     }
 }

@@ -5,12 +5,18 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.JsonConfiguration
 {
     public class ConfigurationTest
     {
+        private static IConfigurationRoot CreateConfiguration(string filename)
+        {
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile($"JsonConfiguration\\{filename}", false);
+            var configuration = builder.Build();
+            return configuration;
+        }
+
         [Fact]
         public void BooleanSetting_ReadFromFile_IsTrue()
         {
-            var builder = new ConfigurationBuilder()
-                    .AddJsonFile("JsonConfiguration\\appsettings-booleans.json", optional: false);
-            var configuration = builder.Build();
+            var configuration = CreateConfiguration("appsettings-booleans.json");
 
             var settings = new ConfigurationConsoleLoggerSettings(
                 configuration.GetSection("Logging"));
@@ -23,18 +29,16 @@ namespace Bodrocode.LoggingAdvanced.Console.Test.JsonConfiguration
         }
 
         [Fact]
-        public void TimeZone_ReadFromFile_IsTrue()
+        public void Timestamp_ReadFromFile_IsTrue()
         {
-            var builder = new ConfigurationBuilder()
-                    .AddJsonFile("JsonConfiguration\\appsettings-timestamp.json", optional: false);
-            var configuration = builder.Build();
+            var configuration = CreateConfiguration("appsettings-timestamp.json");
 
             var settings = new ConfigurationConsoleLoggerSettings(
                 configuration.GetSection("Logging"));
 
             Assert.NotNull(settings.TimestampPolicy);
-            Assert.Equal("UTC",  settings.TimestampPolicy.TimeZone);
-            Assert.Equal("foo",  settings.TimestampPolicy.Format);
+            Assert.Equal("UTC", settings.TimestampPolicy.TimeZone);
+            Assert.Equal("foo", settings.TimestampPolicy.Format);
         }
     }
 }
