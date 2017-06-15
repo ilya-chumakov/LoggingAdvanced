@@ -3,7 +3,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/ilya-chumakov/LoggingAdvanced?branch=develop&svg=true&retina=true&passingText=develop%20-%20OK&failingText=develop%20-%20FAIL)](https://ci.appveyor.com/project/chumakov-ilya/LoggingAdvanced)
 
 
-Advanced .NET Core console logger. I forked Microsoft code, improved it and packages as NuGet package.
+Advanced .NET Core console logger. I forked Microsoft code, improved and packaged it as a NuGet package.
 
 With [Microsoft.Extensions.Logging.Console](https://github.com/aspnet/Logging):
 
@@ -31,7 +31,9 @@ Of course you could customize it:
 And keep the config in `appsettings.json`:
 
     loggerFactory.AddConsoleAdvanced(Configuration.GetSection("Logging"));
-    
+
+Settings file example:
+
     {
         "Logging": {
             "IncludeLineBreak": true,
@@ -44,3 +46,5 @@ And keep the config in `appsettings.json`:
             }
         }
     }
+
+Feel free to suggest new ideas.
