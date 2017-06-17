@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bodrocode.LoggingAdvanced.Console", "Bodrocode.LoggingAdvanced.Console\Bodrocode.LoggingAdvanced.Console.csproj", "{CB5566E6-C151-4FC7-95C1-8A2EE4AD6FAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggingAdvanced.Console", "LoggingAdvanced.Console\LoggingAdvanced.Console.csproj", "{CB5566E6-C151-4FC7-95C1-8A2EE4AD6FAA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bodrocode.LoggingAdvanced.Console.Test.Legacy", "Bodrocode.LoggingAdvanced.Console.Test.Legacy\Bodrocode.LoggingAdvanced.Console.Test.Legacy.csproj", "{EF116BBA-3507-4EAB-A0FE-FC78A49CA853}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggingAdvanced.Console.Test.Legacy", "LoggingAdvanced.Console.Test.Legacy\LoggingAdvanced.Console.Test.Legacy.csproj", "{EF116BBA-3507-4EAB-A0FE-FC78A49CA853}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodrocode.LoggingAdvanced.Console.Test", "Bodrocode.LoggingAdvanced.Console.Test\Bodrocode.LoggingAdvanced.Console.Test.csproj", "{6AC541C8-A209-4048-82B6-25BE85AE5FBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingAdvanced.Console.Test", "LoggingAdvanced.Console.Test\LoggingAdvanced.Console.Test.csproj", "{6AC541C8-A209-4048-82B6-25BE85AE5FBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bodrocode.LoggingAdvanced.Console.App", "Bodrocode.LoggingAdvanced.Console.App\Bodrocode.LoggingAdvanced.Console.App.csproj", "{BBAFEA73-AB58-46D2-8778-0295D820849F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingAdvanced.Console.App", "LoggingAdvanced.Console.App\LoggingAdvanced.Console.App.csproj", "{BBAFEA73-AB58-46D2-8778-0295D820849F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
