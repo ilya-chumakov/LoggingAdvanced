@@ -15,7 +15,7 @@ With LoggingAdvanced:
 
     [2017.06.15 23:46:44] info: WebHost[1]      Request starting HTTP/1.1 GET http://localhost:6002/hc
 
-Usage is simple:
+One line of code to add the log provider:
 
     loggerFactory.AddConsoleAdvanced();
     
