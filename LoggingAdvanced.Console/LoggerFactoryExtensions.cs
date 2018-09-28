@@ -87,6 +87,9 @@ namespace LoggingAdvanced.Console
             return factory;
         }
 
+        /// <summary>
+        /// Adds a console logger that is enabled for <see cref="LogLevel"/>.Information or higher.
+        /// </summary>
         public static ILoggerFactory AddConsoleAdvanced(
             this ILoggerFactory factory, 
             IConfiguration configuration)
