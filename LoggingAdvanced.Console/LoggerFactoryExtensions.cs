@@ -3,34 +3,12 @@
 
 using System;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace LoggingAdvanced.Console
 {
-    public static class ConsoleLoggerExtensions
+    public static class LoggerFactoryExtensions
     {
-        ///// <summary>Adds a console logger named 'ConsoleAdvanced' to the factory.</summary>
-        ///// <param name="builder">The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder" /> to use.</param>
-        //public static ILoggingBuilder AddConsoleAdvanced(this ILoggingBuilder builder)
-        //{
-        //    builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<ILoggerProvider, AdvancedConsoleLoggerProvider>());
-        //    return builder;
-        //}
-
-        ///// <summary>Adds a console logger named 'ConsoleAdvanced' to the factory.</summary>
-        ///// <param name="builder">The <see cref="T:Microsoft.Extensions.Logging.ILoggingBuilder" /> to use.</param>
-        //public static ILoggingBuilder AddConsoleAdvanced(this ILoggingBuilder builder, 
-        //    IConsoleLoggerSettings settings)
-        //{
-        //    if (settings == null)
-        //        throw new ArgumentNullException(nameof (settings));
-
-        //    builder.AddConsoleAdvanced();
-        //    builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton(provider => settings));
-        //    return builder;
-        //}        
-        
         /// <summary>
         /// Adds a console logger that is enabled for <see cref="LogLevel"/>.Information or higher.
         /// </summary>
