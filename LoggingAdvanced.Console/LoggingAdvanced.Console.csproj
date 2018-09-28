@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <Description>Console logger with additional formatting features as a replacement of Microsoft.Extensions.Logging.Console.</Description>
-    <VersionPrefix>1.1.0</VersionPrefix>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -16,9 +15,9 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Authors>Ilya Chumakov</Authors>
-    <AssemblyVersion>0.3.0.0</AssemblyVersion>
-    <FileVersion>0.3.0.0</FileVersion>
-    <Version>0.3.0</Version>
+    <AssemblyVersion>0.4.0.0</AssemblyVersion>
+    <FileVersion>0.4.0.0</FileVersion>
+    <Version>0.4.0</Version>
     <PackageProjectUrl>https://github.com/ilya-chumakov/LoggingAdvanced</PackageProjectUrl>
   </PropertyGroup>
 
