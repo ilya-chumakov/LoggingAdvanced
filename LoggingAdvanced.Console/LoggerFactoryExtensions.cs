@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace LoggingAdvanced.Console
 {
-    public static class ConsoleLoggerExtensions
+    public static class LoggerFactoryExtensions
     {
         /// <summary>
         /// Adds a console logger that is enabled for <see cref="LogLevel"/>.Information or higher.
