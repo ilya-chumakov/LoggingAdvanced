@@ -4,8 +4,9 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/ilya-chumakov/LoggingAdvanced?branch=develop&svg=true&retina=true&passingText=develop%20-%20OK&failingText=develop%20-%20FAIL)](https://ci.appveyor.com/project/chumakov-ilya/LoggingAdvanced)
 
 
-Advanced .NET Core console logger. I forked Microsoft code, improved and packaged it as a [NuGet package](https://www.nuget.org/packages/LoggingAdvanced.Console/) package. Starting from `0.4.0` version, it supports ASP.NET Core 2+ based apps.
+Advanced .NET Core console logger. I forked Microsoft code, improved and packaged it as a [NuGet package](https://www.nuget.org/packages/LoggingAdvanced.Console/). Starting from `0.4.0` version, it supports ASP.NET Core 2+ based apps.
 
+## Examples
 With [Microsoft.Extensions.Logging.Console](https://github.com/aspnet/Logging):
 
     info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
