@@ -3,8 +3,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/ilya-chumakov/LoggingAdvanced?branch=master&svg=true&retina=true&passingText=master%20-%20OK&failingText=master%20-%20FAIL)](https://ci.appveyor.com/project/chumakov-ilya/LoggingAdvanced)
 [![Build status](https://ci.appveyor.com/api/projects/status/github/ilya-chumakov/LoggingAdvanced?branch=develop&svg=true&retina=true&passingText=develop%20-%20OK&failingText=develop%20-%20FAIL)](https://ci.appveyor.com/project/chumakov-ilya/LoggingAdvanced)
 
-
-Advanced .NET Core console logger. I forked Microsoft code, improved and packaged it as a [NuGet package](https://www.nuget.org/packages/LoggingAdvanced.Console/). Starting from `0.4.0` version, it supports ASP.NET Core 2+ based apps.
+An advanced .NET Core console logger. I forked Microsoft code, improved and packaged it as a [NuGet package](https://www.nuget.org/packages/LoggingAdvanced.Console/). Starting from `0.4.0` version, it supports ASP.NET Core 2+ based apps.
 
 ## Examples
 With [Microsoft.Extensions.Logging.Console](https://github.com/aspnet/Logging):
@@ -19,6 +18,7 @@ With LoggingAdvanced:
 ## How to add the logger
 .NET Core 2 way:
 
+```cs
     var webHostBuilder = new WebHostBuilder()
         .ConfigureLogging((hostingContext, loggingBuilder) =>
         {
@@ -26,17 +26,18 @@ With LoggingAdvanced:
 
             loggingBuilder.AddConsoleAdvanced(loggingSection);
         })
-
+```
 .NET Core 1 way:
 
+```cs
     public void Configure(IApplicationBuilder app)
     {
         var loggerFactory = app.ApplicationServices.GetService<ILoggerFactory>();
         loggerFactory.AddConsoleAdvanced(cfg.GetSection("Logging"));
     }
-    
+```    
 ## How to customize the logger
-
+```cs
     AddConsoleAdvanced(new ConsoleLoggerSettings()
     {
         IncludeLineBreak = false,
@@ -44,13 +45,13 @@ With LoggingAdvanced:
         IncludeZeroEventId = false,
         IncludeLogNamespace = false
     });
-    
+```    
 And keep the config in `appsettings.json`:
-
-    loggerFactory.AddConsoleAdvanced(Configuration.GetSection("Logging"));
-
+```cs
+    AddConsoleAdvanced(Configuration.GetSection("Logging"));
+```
 Settings file example:
-
+```json
     {
         "Logging": {
             "IncludeLineBreak": true,
@@ -63,5 +64,5 @@ Settings file example:
             }
         }
     }
-
+```
 Feel free to suggest new ideas.
