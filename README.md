@@ -3,7 +3,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/ilya-chumakov/LoggingAdvanced?branch=develop&svg=true&retina=true&passingText=develop%20-%20OK&failingText=develop%20-%20FAIL)](https://ci.appveyor.com/project/chumakov-ilya/LoggingAdvanced)
 
 
-Advanced .NET Core console logger. I forked Microsoft code, improved and packaged it as a NuGet package.
+Advanced .NET Core console logger. I forked Microsoft code, improved and packaged it as a NuGet package. Starting from `0.4.0` version, it supports ASP.NET Core 2+ based apps.
 
 With [Microsoft.Extensions.Logging.Console](https://github.com/aspnet/Logging):
 
@@ -14,13 +14,28 @@ With LoggingAdvanced:
 
     [2017.06.15 23:46:44] info: WebHost[1]      Request starting HTTP/1.1 GET http://localhost:6002/hc
 
-Usage is simple:
+## How to add the logger
+.NET Core 2 way:
 
-    loggerFactory.AddConsoleAdvanced();
+    var webHostBuilder = new WebHostBuilder()
+        .ConfigureLogging((hostingContext, loggingBuilder) =>
+        {
+            var loggingSection = hostingContext.Configuration.GetSection("Logging");
+
+            loggingBuilder.AddConsoleAdvanced(loggingSection);
+        })
+
+.NET Core 1 way:
+
+    public void Configure(IApplicationBuilder app)
+    {
+        var loggerFactory = app.ApplicationServices.GetService<ILoggerFactory>();
+        loggerFactory.AddConsoleAdvanced(cfg.GetSection("Logging"));
+    }
     
-Of course you could customize it:
+## How to customize the logger
 
-    loggerFactory.AddConsoleAdvanced(new ConsoleLoggerSettings()
+    AddConsoleAdvanced(new ConsoleLoggerSettings()
     {
         IncludeLineBreak = false,
         IncludeTimestamp = true,
