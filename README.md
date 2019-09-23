@@ -37,8 +37,9 @@ With LoggingAdvanced:
     }
 ```    
 ## How to customize the logger
+Parametrize the `AddConsoleAdvanced` call with settings:
 ```cs
-    AddConsoleAdvanced(new ConsoleLoggerSettings()
+    loggingBuilder.AddConsoleAdvanced(new ConsoleLoggerSettings()
     {
         IncludeLineBreak = false,
         IncludeTimestamp = true,
@@ -46,11 +47,11 @@ With LoggingAdvanced:
         IncludeLogNamespace = false
     });
 ```    
-And keep the config in `appsettings.json`:
+Or keep the settings in `appsettings.json` and provide the configuration section:
 ```cs
     AddConsoleAdvanced(Configuration.GetSection("Logging"));
 ```
-A settings file example:
+An `appsettings.json` file example:
 ```json
     {
         "Logging": {
