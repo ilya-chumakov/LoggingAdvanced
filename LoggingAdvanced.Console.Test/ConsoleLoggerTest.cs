@@ -152,7 +152,7 @@ namespace LoggingAdvanced.Console.Test
                           + loggerName
                           + eventIdStr
                           + (settings.IncludeLineBreak ? Environment.NewLine : "")
-                          + _paddingString
+                          + (settings.IncludeLineBreak ? _paddingString : ": ")
                           + ReplaceMessageNewLinesWithPadding(text?.ToString())
                           + Environment.NewLine
                           + exStr;
