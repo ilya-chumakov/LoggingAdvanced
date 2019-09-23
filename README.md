@@ -50,14 +50,14 @@ And keep the config in `appsettings.json`:
 ```cs
     AddConsoleAdvanced(Configuration.GetSection("Logging"));
 ```
-Settings file example:
+A settings file example:
 ```json
     {
         "Logging": {
             "IncludeLineBreak": true,
             "IncludeTimestamp": true,
             "IncludeZeroEventId": true,
-            "IncludeLogNamespace": true
+            "IncludeLogNamespace": true,
             "TimestampPolicy": {
                 "TimeZone": "Ulaanbaatar Standard Time",
                 "Format": "MM/dd/yyyy HH:mm:ss.fff"
