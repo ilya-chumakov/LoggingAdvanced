@@ -1,3 +1,18 @@
+# This project is archived
+For .NET 5+ use built-in [Simple](https://learn.microsoft.com/en-us/dotnet/core/extensions/console-log-formatter?WT.mc_id=DT-MVP-5002999#simple) console log formatter. It provides several customization options, for example:
+```cs
+builder.Services.AddLogging(logging =>
+    logging.AddSimpleConsole(options =>
+    {
+        options.SingleLine = true;
+        options.TimestampFormat = "yyyy-MM-dd HH:mm:ss ";
+    })
+);
+```
+Output:
+
+    2023-04-13 21:43:47 info: Microsoft.Hosting.Lifetime[14] Now listening on: http://localhost:5190
+
 # LoggingAdvanced
 [![NuGet](http://img.shields.io/nuget/v/LoggingAdvanced.Console.svg)](https://www.nuget.org/packages/LoggingAdvanced.Console/)
 [![Build status](https://ci.appveyor.com/api/projects/status/github/ilya-chumakov/LoggingAdvanced?branch=master&svg=true&retina=true&passingText=master%20-%20OK&failingText=master%20-%20FAIL)](https://ci.appveyor.com/project/chumakov-ilya/LoggingAdvanced)
